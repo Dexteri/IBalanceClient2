@@ -14,9 +14,13 @@ namespace LabelPrint
 {
     public partial class GeneratorForm : DevExpress.XtraEditors.XtraForm
     {
+        private PrintManager _printManager;
+        private List<ConsignmentRequestVM> codes;
+
         List<ProductGenerationRequestVM> products = new List<ProductGenerationRequestVM>();
         List<CounterpartyGenerationRequestVM> counterparty = new List<CounterpartyGenerationRequestVM>();
         List<ConsignmentRequestVM> consignment = new List<ConsignmentRequestVM>();
+
         public GeneratorForm()
         {
             InitializeComponent();
@@ -25,9 +29,10 @@ namespace LabelPrint
             FillLookUp();
         }
 
+
         private void FillLookUp()
         {
-            foreach(var item in products)
+            foreach (var item in products)
                 productGenerationRequestVMBindingSource.Add(item);
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
@@ -40,10 +45,19 @@ namespace LabelPrint
             vm.CounterpartyId = int.Parse(lookUpEdit2.EditValue.ToString());
             vm.CodesNumber = int.Parse(numericUpDown1.Value.ToString());
             vm.ConsignmentNumber = textBox1.Text;
-            List<ConsignmentRequestVM> codes = ClientIbalance.Generate(vm);
+            codes = ClientIbalance.Generate(vm);
+            this._printManager.SetCodes(codes);
+        }
 
-            foreach (var item in codes)
-                consignmentRequestVMBindingSource.Add(item);
+        private void print_btn_Click(object sender, EventArgs e)
+        {
+            this._printManager.PrintCollection();
+        }
+
+        private void print_prev_btn_Click(object sender, EventArgs e)
+        {
+            if (codes != null && codes.Count > 0)
+                this._printManager.ShowPrintPreview(codes.FirstOrDefault());
         }
     }
 }

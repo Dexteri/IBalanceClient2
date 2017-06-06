@@ -14,9 +14,13 @@ namespace LabelPrint
 {
     public partial class mainForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private PrintTemplate form;
+        private PrintManager _printManager;
         public mainForm1()
         {
             InitializeComponent();
+            form = new PrintTemplate();
+            form.LoadRichEditControl(ref _printManager);
             XtraTabbedMdiManager mdiManager = new XtraTabbedMdiManager();
             mdiManager.MdiParent = this;
         }
@@ -30,7 +34,6 @@ namespace LabelPrint
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            PrintTemplate form = new PrintTemplate();
             form.MdiParent = this;
             form.Show();
         }
