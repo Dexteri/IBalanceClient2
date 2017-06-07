@@ -24,6 +24,7 @@ namespace LabelPrint
         public GeneratorForm()
         {
             InitializeComponent();
+            _printManager = PrintManager.Instance();
             products = ClientIbalance.GetProducts();
             counterparty = ClientIbalance.GetCounterparty();
             FillLookUp();
@@ -36,6 +37,8 @@ namespace LabelPrint
                 productGenerationRequestVMBindingSource.Add(item);
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
+            foreach (var item in _printManager.LoadListTemplate())
+                counterpartyTemplateBindingSource.Add(item);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -52,12 +55,39 @@ namespace LabelPrint
         private void print_btn_Click(object sender, EventArgs e)
         {
             this._printManager.PrintCollection();
+            //this._printManager.ShowPrintDialog();
         }
 
         private void print_prev_btn_Click(object sender, EventArgs e)
         {
+            this._printManager.LoadRtfTemplate();
             if (codes != null && codes.Count > 0)
                 this._printManager.ShowPrintPreview(codes.FirstOrDefault());
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
+        {
+            _printManager.LoadRtfTemplate(lookUpEdit3.EditValue.ToString());
+        }
+        private void lookUpEdit3_Popup(object sender, EventArgs e)
+        {
+            while (counterpartyTemplateBindingSource.Count > 0)
+                counterpartyTemplateBindingSource.RemoveAt(0);
+
+            foreach (var item in _printManager.LoadListTemplate())
+            {
+                counterpartyTemplateBindingSource.Add(item);
+            }
         }
     }
 }

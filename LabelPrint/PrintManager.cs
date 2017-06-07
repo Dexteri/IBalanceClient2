@@ -13,37 +13,44 @@ namespace LabelPrint
     {
         private static PrintManager _printManager;
 
-        private const string nameTmp = "Template";
+        private const string folderName = "Template";
+        private string nameTmp = "Template";
         private const string format = ".rtf";
+
         private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n" };
+
+        private string htmlDocument;
+        public string Template
+        {
+            get
+            {
+                this.LoadRtfTemplate();
+                return htmlDocument;
+            }
+        }
+        public string Path { get { return /*folderName + "//" + */nameTmp + format; } }
+
         private List<ConsignmentRequestVM> listCodes;
 
-        private DevExpress.XtraRichEdit.RichEditControl richEditControl1;
-
-        public PrintManager(DevExpress.XtraRichEdit.RichEditControl richEditControl)
+        private PrintManager()
         {
-            this.richEditControl1 = richEditControl;
-            LoadTemplate();
+            LoadRtfTemplate();
+            //LoadRtfTemplate2();
+        }
+        public static PrintManager Instance()
+        {
+            if (_printManager == null) _printManager = new PrintManager();
+            return _printManager;
         }
         public void SetCodes(List<ConsignmentRequestVM> codes)
         {
             this.listCodes = codes;
         }
-
-        public void DataTemplate(ConsignmentRequestVM data)
+        public void LoadRtfTemplate(string nameFile = null)
         {
-            if (this.richEditControl1.Document.HtmlText.Contains("Model"))
-                this.richEditControl1.Document.HtmlText = this.richEditControl1.Document.HtmlText.Replace("Model", data.Model);
-            if (this.richEditControl1.Document.HtmlText.Contains("ProductionDate"))
-                this.richEditControl1.Document.HtmlText = this.richEditControl1.Document.HtmlText.Replace("ProductionDate", data.ProductionDate);
-            if (this.richEditControl1.Document.HtmlText.Contains("SerialKey"))
-                this.richEditControl1.Document.HtmlText = this.richEditControl1.Document.HtmlText.Replace("SerialKey", data.ProductionDate);
-        }
-        public bool CheckExist()
-        {
-            string path = nameTmp + format;
-            bool result = File.Exists(path);
-            if (!result)
+            string path = folderName + "\\" + (nameFile == null ? nameTmp : nameFile) + format;
+            if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
+            if (!File.Exists(path))
             {
                 using (StreamWriter sw = new StreamWriter(path, true))
                 {
@@ -51,60 +58,71 @@ namespace LabelPrint
                     {
                         sw.WriteLine(element);
                     }
+                    sw.Close();
                 }
             }
+
+            if (!string.IsNullOrEmpty(nameFile)) this.nameTmp = nameFile;
+            DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
+            richEditControl1.LoadDocument(path, DocumentFormat.Rtf);
+            //"Model\n", "ProductionDate\n", "SerialKey\n"
+            string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
+            if (richEditControl1.Document.Text == "")
+            {
+                richEditControl1.Document.Text = text;
+                htmlDocument = richEditControl1.Document.Text;
+            }
+            else
+                htmlDocument = richEditControl1.Document.HtmlText;
+        }
+
+        public string DataTemplate(ConsignmentRequestVM data)
+        {
+            string result = this.htmlDocument;
+
+            if (result.Contains("Model"))
+                result = result.Replace("Model", data.Model);
+            if (result.Contains("ProductionDate"))
+                result = result.Replace("ProductionDate", data.ProductionDate);
+            if (result.Contains("SerialKey"))
+                result = result.Replace("SerialKey", data.ProductionDate);
             return result;
         }
-        public bool CreateTemplateWithData()
+        public List<TemplateVM> LoadListTemplate()
         {
-            bool result = false;
-            string path = nameTmp + format;
-            string newPath = path + "0" + format;
-            if (File.Exists(newPath))
-                File.Delete(newPath);
-            CheckExist();
-            File.Copy(path, newPath);
-            this.richEditControl1.LoadDocument(newPath, DocumentFormat.Rtf);
+            List<TemplateVM> result = new List<TemplateVM>();
+            if (Directory.Exists(folderName + "\\"))
+            {
+                foreach (var item in Directory.GetFiles(folderName + "\\"))
+                    result.Add(new TemplateVM() { Name = item.Split('\\')[1].Split('.')[0] });
+            }
             return result;
-        }
-        public void LoadTemplate()
-        {
-            string path = nameTmp + format;
-            CheckExist();
-            this.richEditControl1.LoadDocument(path, DocumentFormat.Rtf);
         }
         public void ShowPrintPreview(ConsignmentRequestVM data = null)
         {
-            if (this.richEditControl1.IsPrintingAvailable)
-            {
-                if (this.listCodes == null || this.listCodes.Count < 0) return;
-                if (data == null)
-                    data = this.listCodes.FirstOrDefault();
-                CreateTemplateWithData();
-                DataTemplate(data);
-                richEditControl1.ShowPrintPreview();
-                LoadTemplate();
-            }
+            if (this.listCodes == null || this.listCodes.Count < 0) return;
+            if (data == null)
+                data = this.listCodes.FirstOrDefault();
+
+            DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
+            richEditControl1.Document.HtmlText = DataTemplate(data);
+            richEditControl1.ShowPrintPreview();
         }
-        public void ShowPrintDialog(ConsignmentRequestVM data)
+        public void ShowPrintDialog(ConsignmentRequestVM data = null)
         {
-            if (this.richEditControl1.IsPrintingAvailable)
-            {
-                CreateTemplateWithData();
-                DataTemplate(data);
-                richEditControl1.ShowPrintDialog();
-                LoadTemplate();
-            }
+            if (this.listCodes == null || this.listCodes.Count < 0) return;
+            if (data == null)
+                data = this.listCodes.FirstOrDefault();
+
+            DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
+            richEditControl1.Document.HtmlText = DataTemplate(data);
+            richEditControl1.ShowPrintDialog();
         }
         public void Print(ConsignmentRequestVM data)
         {
-            if (this.richEditControl1.IsPrintingAvailable)
-            {
-                CreateTemplateWithData();
-                DataTemplate(data);
-                richEditControl1.Print();
-                LoadTemplate();
-            }
+            DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
+            richEditControl1.Document.HtmlText = DataTemplate(data);
+            richEditControl1.Print();
         }
         public void PrintCollection()
         {
@@ -116,11 +134,7 @@ namespace LabelPrint
         }
         public void ShowPrintPreviewCollection()
         {
-            if (this.listCodes != null)
-                foreach (var data in this.listCodes)
-                {
-                    ShowPrintPreview(data);
-                }
+            ShowPrintPreview();
         }
     }
 }

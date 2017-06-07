@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraRichEdit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,11 +17,8 @@ namespace LabelPrint
         public PrintTemplate()
         {
             InitializeComponent();
-            _printManager = new PrintManager(this.richEditControl1);
-        }
-        public void LoadRichEditControl(ref PrintManager _printManager)
-        {
-            _printManager = this._printManager;
+            _printManager = PrintManager.Instance();
+            this.richEditControl1.Document.HtmlText = _printManager.Template;
         }
         private void richEditControl1_Click(object sender, EventArgs e)
         {
@@ -35,6 +33,16 @@ namespace LabelPrint
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             _printManager.ShowPrintPreview();
+        }
+
+        private void richEditControl1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileSaveItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+        
         }
     }
 }

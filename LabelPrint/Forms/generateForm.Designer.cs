@@ -1,4 +1,6 @@
-﻿namespace LabelPrint
+﻿using System;
+
+namespace LabelPrint
 {
     partial class GeneratorForm
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,18 +47,22 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.productGenerationRequestVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.counterpartyTemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             this.counterpartyGenerationRequestVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.print_btn = new System.Windows.Forms.Button();
             this.print_prev_btn = new System.Windows.Forms.Button();
+            this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentRequestVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productGenerationRequestVMBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.counterpartyTemplateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -121,9 +127,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.consignmentRequestVMBindingSource;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.gridControl1.Location = new System.Drawing.Point(16, 69);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -131,6 +137,7 @@
             this.gridControl1.TabIndex = 9;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // consignmentRequestVMBindingSource
             // 
@@ -197,6 +204,10 @@
             // 
             this.productGenerationRequestVMBindingSource.DataSource = typeof(LabelPrint.Models.ProductGenerationRequestVM);
             // 
+            // counterpartyTemplateBindingSource
+            // 
+            this.counterpartyTemplateBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
+            // 
             // lookUpEdit2
             // 
             this.lookUpEdit2.Location = new System.Drawing.Point(176, 37);
@@ -210,6 +221,7 @@
             this.lookUpEdit2.Properties.ValueMember = "Id";
             this.lookUpEdit2.Size = new System.Drawing.Size(149, 26);
             this.lookUpEdit2.TabIndex = 12;
+            this.lookUpEdit2.EditValueChanged += new System.EventHandler(this.lookUpEdit2_EditValueChanged);
             // 
             // counterpartyGenerationRequestVMBindingSource
             // 
@@ -235,11 +247,26 @@
             this.print_prev_btn.UseVisualStyleBackColor = true;
             this.print_prev_btn.Click += new System.EventHandler(this.print_prev_btn_Click);
             // 
+            // lookUpEdit3
+            // 
+            this.lookUpEdit3.Location = new System.Drawing.Point(944, 36);
+            this.lookUpEdit3.Name = "lookUpEdit3";
+            this.lookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit3.Properties.DataSource = this.counterpartyTemplateBindingSource;
+            this.lookUpEdit3.Properties.DisplayMember = "Name";
+            this.lookUpEdit3.Properties.ValueMember = "Name";
+            this.lookUpEdit3.Size = new System.Drawing.Size(155, 20);
+            this.lookUpEdit3.TabIndex = 15;
+            this.lookUpEdit3.EditValueChanged += new System.EventHandler(this.lookUpEdit3_EditValueChanged);
+            this.lookUpEdit3.Popup += new System.EventHandler(this.lookUpEdit3_Popup);
+            // 
             // GeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1111, 549);
+            this.Controls.Add(this.lookUpEdit3);
             this.Controls.Add(this.print_prev_btn);
             this.Controls.Add(this.print_btn);
             this.Controls.Add(this.lookUpEdit2);
@@ -260,8 +287,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productGenerationRequestVMBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.counterpartyTemplateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,5 +317,7 @@
         public System.Windows.Forms.BindingSource counterpartyGenerationRequestVMBindingSource;
         private System.Windows.Forms.Button print_btn;
         private System.Windows.Forms.Button print_prev_btn;
+        private DevExpress.XtraEditors.LookUpEdit lookUpEdit3;
+        public System.Windows.Forms.BindingSource counterpartyTemplateBindingSource;
     }
 }
