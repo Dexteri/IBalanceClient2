@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.Commands;
+using DevExpress.XtraRichEdit.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +24,10 @@ namespace LabelPrint
         {
             string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
             richEditControl1.Document.Text = text;
+            this.richEditControl1.Options.DocumentSaveOptions.DefaultFormat = DocumentFormat.OpenXml;
+            this.richEditControl1.Options.DocumentSaveOptions.DefaultFileName = @"Templates\Template";
         }
+
+
     }
 }

@@ -15,6 +15,7 @@ namespace LabelPrint
         DevExpress.XtraRichEdit.RichEditControl richEditControl1;
 
         public List<TemplateVM> templates;
+        DevExpress.XtraRichEdit.RichEditControl richEditControl1;
 
         private String currentTemplate;
 
@@ -47,6 +48,7 @@ namespace LabelPrint
             templates = LoadListTemplate();
             if (templates.Count > 0)
                 LoadTemplate(templates[0].Name);
+            richEditControl1 = new RichEditControl();
         }
         public static PrintManager Instance()
         {
@@ -78,11 +80,10 @@ namespace LabelPrint
         public List<TemplateVM> LoadListTemplate()
         {
             List<TemplateVM> result = new List<TemplateVM>();
-            if (Directory.Exists(folderName + "\\"))
-            {
-                foreach (var item in Directory.GetFiles(folderName + "\\"))
-                    result.Add(new TemplateVM() { Name = item.Split('\\')[1].Split('.')[0] });
-            }
+            if (!Directory.Exists(folderName))
+                Directory.CreateDirectory(folderName);
+            foreach (var item in Directory.GetFiles(folderName))
+                result.Add(new TemplateVM() { Name = item.Split('\\')[1].Split('.')[0] });
             return result;
         }
 
@@ -106,4 +107,5 @@ namespace LabelPrint
             }
         }
     }
+
 }
