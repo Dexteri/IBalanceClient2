@@ -15,7 +15,6 @@ namespace LabelPrint
         DevExpress.XtraRichEdit.RichEditControl richEditControl1;
 
         public List<TemplateVM> templates;
-        DevExpress.XtraRichEdit.RichEditControl richEditControl1;
 
         private String currentTemplate;
 
