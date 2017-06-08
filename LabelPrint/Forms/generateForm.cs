@@ -71,6 +71,7 @@ namespace LabelPrint
                         goto GetFromApi;
                     }
                 }
+            consignmentRequestVMBindingSource.Clear();
             foreach (var item in codes)
                 consignmentRequestVMBindingSource.Add(item);
         }

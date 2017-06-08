@@ -11,7 +11,7 @@ namespace LabelPrint
 {
     class ClientIbalance
     {
-        static string Url = "http://localhost:61231/api/client/";
+        static string Url = "http://ibalance-001-site1.etempurl.com/api/client/";
         static HttpClient client = new HttpClient();
 
         static public List<ProductGenerationRequestVM> GetProducts()
