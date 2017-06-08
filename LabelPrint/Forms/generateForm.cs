@@ -58,7 +58,7 @@ namespace LabelPrint
             vm.CounterpartyId = int.Parse(lookUpEdit2.EditValue.ToString());
             vm.CodesNumber = int.Parse(numericUpDown1.Value.ToString());
             vm.ConsignmentNumber = textBox1.Text;
-            List<ConsignmentRequestVM> codes = ClientIbalance.Generate(vm);
+            List<ConsignmentRequestVM> codes = null;
             GetFromApi:
                 try
                 {
