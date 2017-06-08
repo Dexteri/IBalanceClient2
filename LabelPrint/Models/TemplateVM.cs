@@ -8,6 +8,7 @@ namespace LabelPrint.Models
 {
     public class TemplateVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

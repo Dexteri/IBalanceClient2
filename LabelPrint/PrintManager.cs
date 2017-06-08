@@ -60,8 +60,9 @@ namespace LabelPrint
 
             DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
 
+            richEditControl1.LoadDocumentTemplate(path, DocumentFormat.OpenXml);
             richEditControl1.LoadDocument(path, DocumentFormat.OpenXml);
-            
+
             string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
             if (richEditControl1.Document.Text == "")
             {

@@ -14,25 +14,48 @@ namespace LabelPrint
 {
     public partial class mainForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        GeneratorForm gf;
+        PrintTemplate pt;
         public mainForm1()
         {
             InitializeComponent();
             XtraTabbedMdiManager mdiManager = new XtraTabbedMdiManager();
+            mdiManager.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             mdiManager.MdiParent = this;
         }
 
         private void GenerateButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GeneratorForm form = new GeneratorForm();
-            form.MdiParent = this;
-            form.Show();
+            if (gf == null)
+            {
+                gf = new GeneratorForm();
+                gf.MdiParent = this;
+                gf.Disposed += Gf_Disposed;
+                gf.Show();
+            }
+            gf.Focus();
+        }
+
+        private void Gf_Disposed(object sender, EventArgs e)
+        {
+            gf = null;
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            PrintTemplate form = new PrintTemplate();
-            form.MdiParent = this;
-            form.Show();
+            if (pt == null)
+            {
+                pt = new PrintTemplate();
+                pt.MdiParent = this;
+                pt.Disposed += Pt_Disposed;
+                pt.Show();
+            }
+            pt.Focus();
+        }
+
+        private void Pt_Disposed(object sender, EventArgs e)
+        {
+            pt = null;
         }
     }
 }

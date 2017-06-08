@@ -15,15 +15,15 @@ namespace LabelPrint
     public partial class GeneratorForm : DevExpress.XtraEditors.XtraForm
     {
         private PrintManager _printManager;
-        private List<ConsignmentRequestVM> codes;
-
         List<ProductGenerationRequestVM> products = new List<ProductGenerationRequestVM>();
         List<CounterpartyGenerationRequestVM> counterparty = new List<CounterpartyGenerationRequestVM>();
         List<ConsignmentRequestVM> consignment = new List<ConsignmentRequestVM>();
-
+        List<TemplateVM> templates = new List<TemplateVM>();
         public GeneratorForm()
         {
             InitializeComponent();
+            products = ClientIbalance.GetProducts();
+            counterparty = ClientIbalance.GetCounterparty();
             _printManager = PrintManager.Instance();
             GetFromApi:
             try
@@ -33,14 +33,13 @@ namespace LabelPrint
             }
             catch (Exception ex)
             {
-                if(MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                if (MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
                 {
                     goto GetFromApi;
                 }
             }
             FillLookUp();
         }
-
 
         private void FillLookUp()
         {
@@ -49,7 +48,7 @@ namespace LabelPrint
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
             foreach (var item in _printManager.templates)
-                counterpartyTemplateBindingSource.Add(item);
+                templateVMBindingSource.Add(item);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -59,46 +58,57 @@ namespace LabelPrint
             vm.CounterpartyId = int.Parse(lookUpEdit2.EditValue.ToString());
             vm.CodesNumber = int.Parse(numericUpDown1.Value.ToString());
             vm.ConsignmentNumber = textBox1.Text;
+            List<ConsignmentRequestVM> codes = ClientIbalance.Generate(vm);
             GetFromApi:
-            try
-            {
-                codes = ClientIbalance.Generate(vm);
-            }
-            catch (Exception ex)
-            {
-                if (MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                try
                 {
-                    goto GetFromApi;
+                    codes = ClientIbalance.Generate(vm);
                 }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                    {
+                        goto GetFromApi;
+                    }
+                }
+            foreach (var item in codes)
+                consignmentRequestVMBindingSource.Add(item);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
+            var list = gridView1.GetSelectedRows();
+            foreach(int i in list)
+            {
+                consignments.Add((ConsignmentRequestVM)consignmentRequestVMBindingSource.List[i]);
             }
+            this._printManager.PrintCollection(consignments);
         }
 
-       /* private void print_btn_Click(object sender, EventArgs e)
+        private void simpleButton3_Click(object sender, EventArgs e)
         {
-            //this._printManager.PrintCollection();
-            //this._printManager.ShowPrintDialog();
+            List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
+            var list = gridView1.GetSelectedRows();
+            foreach (int i in list)
+            {
+                consignments.Add((ConsignmentRequestVM)consignmentRequestVMBindingSource.List[i]);
+            }
+            this._printManager.ShowPrintPreview(consignments);
         }
-
-        private void print_prev_btn_Click(object sender, EventArgs e)
+        private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
         {
-            this._printManager.LoadRtfTemplate();
-            if (codes != null && codes.Count > 0)
-                this._printManager.ShowPrintPreview(codes.FirstOrDefault());
-        }
-
-       private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
-       {
             _printManager.LoadTemplate(lookUpEdit3.EditValue.ToString());
         }
         private void lookUpEdit3_Popup(object sender, EventArgs e)
         {
-            while (counterpartyTemplateBindingSource.Count > 0)
-                counterpartyTemplateBindingSource.RemoveAt(0);
+            while (templateVMBindingSource.Count > 0)
+                templateVMBindingSource.RemoveAt(0);
 
-            foreach (var item in _printManager.LoadListTemplate())
+            foreach (var item in _printManager.templates)
             {
-                counterpartyTemplateBindingSource.Add(item);
+                templateVMBindingSource.Add(item);
             }
-        }*/
+        }
     }
 }

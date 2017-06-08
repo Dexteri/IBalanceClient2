@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LabelPrint
+﻿namespace LabelPrint
 {
     partial class GeneratorForm
     {
@@ -32,93 +30,77 @@ namespace LabelPrint
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.consignmentRequestVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSerialKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProductionDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.productGenerationRequestVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.counterpartyTemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             this.counterpartyGenerationRequestVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.print_btn = new System.Windows.Forms.Button();
-            this.print_prev_btn = new System.Windows.Forms.Button();
-            this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.productGenerationRequestVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Шаблон = new DevExpress.XtraLayout.LayoutControlItem();
+            this.templateVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentRequestVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productGenerationRequestVMBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.counterpartyTemplateBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
+            this.dataLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productGenerationRequestVMBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(12, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Продукт ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(172, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Контрагент";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(341, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Количество кодов";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(490, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 19);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Номер партии ";
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(345, 36);
+            this.numericUpDown1.Location = new System.Drawing.Point(757, 12);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDown1.Size = new System.Drawing.Size(84, 27);
             this.numericUpDown1.TabIndex = 7;
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(494, 36);
+            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(918, 12);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 27);
+            this.textBox1.Size = new System.Drawing.Size(97, 26);
             this.textBox1.TabIndex = 8;
             // 
             // gridControl1
@@ -127,13 +109,14 @@ namespace LabelPrint
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.consignmentRequestVMBindingSource;
+            this.gridControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             gridLevelNode1.RelationName = "Level1";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gridControl1.Location = new System.Drawing.Point(16, 69);
+            this.gridControl1.Location = new System.Drawing.Point(12, 42);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1083, 468);
+            this.gridControl1.Size = new System.Drawing.Size(1240, 550);
             this.gridControl1.TabIndex = 9;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -145,45 +128,139 @@ namespace LabelPrint
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colId,
+            this.colSerialKey,
             this.colModel,
             this.colProductionDate});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             // 
-            // colId
+            // colSerialKey
             // 
-            this.colId.FieldName = "Id";
-            this.colId.Name = "colId";
-            this.colId.Visible = true;
-            this.colId.VisibleIndex = 0;
+            this.colSerialKey.Caption = "Серийный номер";
+            this.colSerialKey.FieldName = "SerialKey";
+            this.colSerialKey.Name = "colSerialKey";
+            this.colSerialKey.Visible = true;
+            this.colSerialKey.VisibleIndex = 1;
             // 
             // colModel
             // 
+            this.colModel.Caption = "Модель";
             this.colModel.FieldName = "Model";
             this.colModel.Name = "colModel";
             this.colModel.Visible = true;
-            this.colModel.VisibleIndex = 1;
+            this.colModel.VisibleIndex = 2;
             // 
             // colProductionDate
             // 
+            this.colProductionDate.Caption = "Дата изготовления";
             this.colProductionDate.FieldName = "ProductionDate";
             this.colProductionDate.Name = "colProductionDate";
             this.colProductionDate.Visible = true;
-            this.colProductionDate.VisibleIndex = 2;
+            this.colProductionDate.VisibleIndex = 3;
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(614, 15);
+            this.simpleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.AutoWidthInLayoutControl = true;
+            this.simpleButton1.Location = new System.Drawing.Point(1085, 12);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(129, 48);
+            this.simpleButton1.Size = new System.Drawing.Size(167, 26);
+            this.simpleButton1.StyleController = this.dataLayoutControl1;
             this.simpleButton1.TabIndex = 10;
             this.simpleButton1.Text = "Запустить генерацию";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
+            // dataLayoutControl1
+            // 
+            this.dataLayoutControl1.Controls.Add(this.lookUpEdit3);
+            this.dataLayoutControl1.Controls.Add(this.simpleButton3);
+            this.dataLayoutControl1.Controls.Add(this.simpleButton2);
+            this.dataLayoutControl1.Controls.Add(this.gridControl1);
+            this.dataLayoutControl1.Controls.Add(this.lookUpEdit2);
+            this.dataLayoutControl1.Controls.Add(this.lookUpEdit1);
+            this.dataLayoutControl1.Controls.Add(this.textBox1);
+            this.dataLayoutControl1.Controls.Add(this.simpleButton1);
+            this.dataLayoutControl1.Controls.Add(this.numericUpDown1);
+            this.dataLayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataLayoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.dataLayoutControl1.Name = "dataLayoutControl1";
+            this.dataLayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(336, 340, 450, 400);
+            this.dataLayoutControl1.Root = this.layoutControlGroup1;
+            this.dataLayoutControl1.Size = new System.Drawing.Size(1264, 634);
+            this.dataLayoutControl1.TabIndex = 14;
+            this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // lookUpEdit3
+            // 
+            this.lookUpEdit3.Location = new System.Drawing.Point(716, 596);
+            this.lookUpEdit3.Name = "lookUpEdit3";
+            this.lookUpEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lookUpEdit3.Properties.Appearance.Options.UseFont = true;
+            this.lookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit3.Properties.DataSource = this.templateVMBindingSource;
+            this.lookUpEdit3.Properties.DisplayMember = "Name";
+            this.lookUpEdit3.Properties.NullText = "Выберите шаблон";
+            this.lookUpEdit3.Properties.ValueMember = "Name";
+            this.lookUpEdit3.Size = new System.Drawing.Size(229, 26);
+            this.lookUpEdit3.StyleController = this.dataLayoutControl1;
+            this.lookUpEdit3.TabIndex = 15;
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleButton3.Appearance.Options.UseFont = true;
+            this.simpleButton3.AutoWidthInLayoutControl = true;
+            this.simpleButton3.Location = new System.Drawing.Point(949, 596);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(222, 26);
+            this.simpleButton3.StyleController = this.dataLayoutControl1;
+            this.simpleButton3.TabIndex = 14;
+            this.simpleButton3.Text = "Предварительный просмотр ";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.AutoWidthInLayoutControl = true;
+            this.simpleButton2.Location = new System.Drawing.Point(1175, 596);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(77, 26);
+            this.simpleButton2.StyleController = this.dataLayoutControl1;
+            this.simpleButton2.TabIndex = 13;
+            this.simpleButton2.Text = "Печатать";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // lookUpEdit2
+            // 
+            this.lookUpEdit2.Location = new System.Drawing.Point(422, 12);
+            this.lookUpEdit2.Name = "lookUpEdit2";
+            this.lookUpEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lookUpEdit2.Properties.Appearance.Options.UseFont = true;
+            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit2.Properties.DataSource = this.counterpartyGenerationRequestVMBindingSource;
+            this.lookUpEdit2.Properties.DisplayMember = "Name";
+            this.lookUpEdit2.Properties.NullText = "Выберите агента";
+            this.lookUpEdit2.Properties.ValueMember = "Id";
+            this.lookUpEdit2.Size = new System.Drawing.Size(258, 26);
+            this.lookUpEdit2.StyleController = this.dataLayoutControl1;
+            this.lookUpEdit2.TabIndex = 12;
+            // 
+            // counterpartyGenerationRequestVMBindingSource
+            // 
+            this.counterpartyGenerationRequestVMBindingSource.DataSource = typeof(LabelPrint.Models.CounterpartyGenerationRequestVM);
+            // 
             // lookUpEdit1
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(16, 37);
+            this.lookUpEdit1.Location = new System.Drawing.Point(61, 12);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
@@ -195,123 +272,205 @@ namespace LabelPrint
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductionDate", "Production Date", 123, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.lookUpEdit1.Properties.DataSource = this.productGenerationRequestVMBindingSource;
             this.lookUpEdit1.Properties.DisplayMember = "Model";
+            this.lookUpEdit1.Properties.NullText = "Выберите продукт";
             this.lookUpEdit1.Properties.ValueMember = "Id";
-            this.lookUpEdit1.Size = new System.Drawing.Size(149, 26);
+            this.lookUpEdit1.Size = new System.Drawing.Size(284, 26);
+            this.lookUpEdit1.StyleController = this.dataLayoutControl1;
             this.lookUpEdit1.TabIndex = 11;
             // 
             // productGenerationRequestVMBindingSource
             // 
             this.productGenerationRequestVMBindingSource.DataSource = typeof(LabelPrint.Models.ProductGenerationRequestVM);
             // 
-            // counterpartyTemplateBindingSource
+            // layoutControlGroup1
             // 
-            this.counterpartyTemplateBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem1,
+            this.layoutControlItem6,
+            this.layoutControlItem2,
+            this.layoutControlItem5,
+            this.layoutControlItem3,
+            this.layoutControlItem4,
+            this.layoutControlItem1,
+            this.emptySpaceItem2,
+            this.layoutControlItem7,
+            this.layoutControlItem8,
+            this.Шаблон});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1264, 634);
+            this.layoutControlGroup1.TextVisible = false;
             // 
-            // lookUpEdit2
+            // emptySpaceItem1
             // 
-            this.lookUpEdit2.Location = new System.Drawing.Point(176, 37);
-            this.lookUpEdit2.Name = "lookUpEdit2";
-            this.lookUpEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lookUpEdit2.Properties.Appearance.Options.UseFont = true;
-            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit2.Properties.DataSource = this.counterpartyGenerationRequestVMBindingSource;
-            this.lookUpEdit2.Properties.DisplayMember = "Name";
-            this.lookUpEdit2.Properties.ValueMember = "Id";
-            this.lookUpEdit2.Size = new System.Drawing.Size(149, 26);
-            this.lookUpEdit2.TabIndex = 12;
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 584);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(631, 30);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // counterpartyGenerationRequestVMBindingSource
+            // layoutControlItem6
             // 
-            this.counterpartyGenerationRequestVMBindingSource.DataSource = typeof(LabelPrint.Models.CounterpartyGenerationRequestVM);
+            this.layoutControlItem6.Control = this.gridControl1;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 30);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(1244, 554);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
             // 
-            // print_btn
+            // layoutControlItem2
             // 
-            this.print_btn.Location = new System.Drawing.Point(760, 15);
-            this.print_btn.Name = "print_btn";
-            this.print_btn.Size = new System.Drawing.Size(81, 48);
-            this.print_btn.TabIndex = 13;
-            this.print_btn.Text = "Print";
-            this.print_btn.UseVisualStyleBackColor = true;
+            this.layoutControlItem2.Control = this.lookUpEdit1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(337, 30);
+            this.layoutControlItem2.Text = "Продукт";
+            this.layoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(44, 13);
+            this.layoutControlItem2.TextToControlDistance = 5;
             // 
-            // print_prev_btn
+            // layoutControlItem5
             // 
-            this.print_prev_btn.Location = new System.Drawing.Point(858, 15);
-            this.print_prev_btn.Name = "print_prev_btn";
-            this.print_prev_btn.Size = new System.Drawing.Size(79, 48);
-            this.print_prev_btn.TabIndex = 14;
-            this.print_prev_btn.Text = "Print Preview";
-            this.print_prev_btn.UseVisualStyleBackColor = true;
+            this.layoutControlItem5.Control = this.lookUpEdit2;
+            this.layoutControlItem5.Location = new System.Drawing.Point(337, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(335, 30);
+            this.layoutControlItem5.Text = "Контрагент";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(70, 13);
             // 
-            // lookUpEdit3
+            // layoutControlItem3
             // 
-            this.lookUpEdit3.Location = new System.Drawing.Point(944, 36);
-            this.lookUpEdit3.Name = "lookUpEdit3";
-            this.lookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit3.Properties.DataSource = this.counterpartyTemplateBindingSource;
-            this.lookUpEdit3.Properties.DisplayMember = "Name";
-            this.lookUpEdit3.Properties.ValueMember = "Name";
-            this.lookUpEdit3.Size = new System.Drawing.Size(155, 20);
-            this.lookUpEdit3.TabIndex = 15;
+            this.layoutControlItem3.Control = this.numericUpDown1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(672, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(161, 30);
+            this.layoutControlItem3.Text = "Количество";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(70, 13);
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.textBox1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(833, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(174, 30);
+            this.layoutControlItem4.Text = "Номер партии";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(70, 13);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.simpleButton1;
+            this.layoutControlItem1.Location = new System.Drawing.Point(1073, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(171, 30);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(1007, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(66, 30);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.simpleButton2;
+            this.layoutControlItem7.Location = new System.Drawing.Point(1163, 584);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(81, 30);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.simpleButton3;
+            this.layoutControlItem8.Location = new System.Drawing.Point(937, 584);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(226, 30);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
+            // 
+            // Шаблон
+            // 
+            this.Шаблон.Control = this.lookUpEdit3;
+            this.Шаблон.Location = new System.Drawing.Point(631, 584);
+            this.Шаблон.Name = "Шаблон";
+            this.Шаблон.Size = new System.Drawing.Size(306, 30);
+            this.Шаблон.TextSize = new System.Drawing.Size(70, 13);
+            // 
+            // templateVMBindingSource
+            // 
+            this.templateVMBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
             // 
             // GeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 549);
-            this.Controls.Add(this.lookUpEdit3);
-            this.Controls.Add(this.print_prev_btn);
-            this.Controls.Add(this.print_btn);
-            this.Controls.Add(this.lookUpEdit2);
-            this.Controls.Add(this.lookUpEdit1);
-            this.Controls.Add(this.simpleButton1);
-            this.Controls.Add(this.gridControl1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1264, 634);
+            this.Controls.Add(this.dataLayoutControl1);
             this.Name = "GeneratorForm";
             this.Text = "Генерация";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentRequestVMBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productGenerationRequestVMBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.counterpartyTemplateBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
+            this.dataLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productGenerationRequestVMBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.TextBox textBox1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
-        public System.Windows.Forms.BindingSource consignmentRequestVMBindingSource;
-        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colSerialKey;
         private DevExpress.XtraGrid.Columns.GridColumn colModel;
         private DevExpress.XtraGrid.Columns.GridColumn colProductionDate;
-        public System.Windows.Forms.BindingSource productGenerationRequestVMBindingSource;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit2;
-        public System.Windows.Forms.BindingSource counterpartyGenerationRequestVMBindingSource;
-        private System.Windows.Forms.Button print_btn;
-        private System.Windows.Forms.Button print_prev_btn;
+        private System.Windows.Forms.BindingSource consignmentRequestVMBindingSource;
+        private System.Windows.Forms.BindingSource productGenerationRequestVMBindingSource;
+        private System.Windows.Forms.BindingSource counterpartyGenerationRequestVMBindingSource;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraDataLayout.DataLayoutControl dataLayoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit3;
-        public System.Windows.Forms.BindingSource counterpartyTemplateBindingSource;
+        private DevExpress.XtraLayout.LayoutControlItem Шаблон;
+        private System.Windows.Forms.BindingSource templateVMBindingSource;
     }
 }
