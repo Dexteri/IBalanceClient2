@@ -25,8 +25,19 @@ namespace LabelPrint
         {
             InitializeComponent();
             _printManager = PrintManager.Instance();
-            products = ClientIbalance.GetProducts();
-            counterparty = ClientIbalance.GetCounterparty();
+            GetFromApi:
+            try
+            {
+                products = ClientIbalance.GetProducts();
+                counterparty = ClientIbalance.GetCounterparty();
+            }
+            catch (Exception ex)
+            {
+                if(MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                {
+                    goto GetFromApi;
+                }
+            }
             FillLookUp();
         }
 
@@ -37,7 +48,7 @@ namespace LabelPrint
                 productGenerationRequestVMBindingSource.Add(item);
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
-            foreach (var item in _printManager.LoadListTemplate())
+            foreach (var item in _printManager.templates)
                 counterpartyTemplateBindingSource.Add(item);
         }
 
@@ -48,13 +59,23 @@ namespace LabelPrint
             vm.CounterpartyId = int.Parse(lookUpEdit2.EditValue.ToString());
             vm.CodesNumber = int.Parse(numericUpDown1.Value.ToString());
             vm.ConsignmentNumber = textBox1.Text;
-            codes = ClientIbalance.Generate(vm);
-            this._printManager.SetCodes(codes);
+            GetFromApi:
+            try
+            {
+                codes = ClientIbalance.Generate(vm);
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                {
+                    goto GetFromApi;
+                }
+            }
         }
 
-        private void print_btn_Click(object sender, EventArgs e)
+       /* private void print_btn_Click(object sender, EventArgs e)
         {
-            this._printManager.PrintCollection();
+            //this._printManager.PrintCollection();
             //this._printManager.ShowPrintDialog();
         }
 
@@ -65,19 +86,9 @@ namespace LabelPrint
                 this._printManager.ShowPrintPreview(codes.FirstOrDefault());
         }
 
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
-        {
-            _printManager.LoadRtfTemplate(lookUpEdit3.EditValue.ToString());
+       private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
+       {
+            _printManager.LoadTemplate(lookUpEdit3.EditValue.ToString());
         }
         private void lookUpEdit3_Popup(object sender, EventArgs e)
         {
@@ -88,6 +99,6 @@ namespace LabelPrint
             {
                 counterpartyTemplateBindingSource.Add(item);
             }
-        }
+        }*/
     }
 }

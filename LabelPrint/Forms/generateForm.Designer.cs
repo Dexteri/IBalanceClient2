@@ -137,7 +137,6 @@ namespace LabelPrint
             this.gridControl1.TabIndex = 9;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // consignmentRequestVMBindingSource
             // 
@@ -221,7 +220,6 @@ namespace LabelPrint
             this.lookUpEdit2.Properties.ValueMember = "Id";
             this.lookUpEdit2.Size = new System.Drawing.Size(149, 26);
             this.lookUpEdit2.TabIndex = 12;
-            this.lookUpEdit2.EditValueChanged += new System.EventHandler(this.lookUpEdit2_EditValueChanged);
             // 
             // counterpartyGenerationRequestVMBindingSource
             // 
@@ -235,7 +233,6 @@ namespace LabelPrint
             this.print_btn.TabIndex = 13;
             this.print_btn.Text = "Print";
             this.print_btn.UseVisualStyleBackColor = true;
-            this.print_btn.Click += new System.EventHandler(this.print_btn_Click);
             // 
             // print_prev_btn
             // 
@@ -245,7 +242,6 @@ namespace LabelPrint
             this.print_prev_btn.TabIndex = 14;
             this.print_prev_btn.Text = "Print Preview";
             this.print_prev_btn.UseVisualStyleBackColor = true;
-            this.print_prev_btn.Click += new System.EventHandler(this.print_prev_btn_Click);
             // 
             // lookUpEdit3
             // 
@@ -258,8 +254,6 @@ namespace LabelPrint
             this.lookUpEdit3.Properties.ValueMember = "Name";
             this.lookUpEdit3.Size = new System.Drawing.Size(155, 20);
             this.lookUpEdit3.TabIndex = 15;
-            this.lookUpEdit3.EditValueChanged += new System.EventHandler(this.lookUpEdit3_EditValueChanged);
-            this.lookUpEdit3.Popup += new System.EventHandler(this.lookUpEdit3_Popup);
             // 
             // GeneratorForm
             // 

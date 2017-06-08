@@ -709,7 +709,6 @@
             this.richEditControl1.Size = new System.Drawing.Size(970, 399);
             this.richEditControl1.TabIndex = 2;
             this.richEditControl1.Text = "richEditControl1";
-            this.richEditControl1.Click += new System.EventHandler(this.richEditControl1_Click_1);
             // 
             // fontSizeIncreaseItem1
             // 
@@ -989,7 +988,6 @@
             this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -997,7 +995,6 @@
             this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // undoItem1
             // 
@@ -1023,7 +1020,6 @@
             // 
             this.fileSaveItem1.Id = 62;
             this.fileSaveItem1.Name = "fileSaveItem1";
-            this.fileSaveItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileSaveItem1_ItemClick);
             // 
             // fileSaveAsItem1
             // 

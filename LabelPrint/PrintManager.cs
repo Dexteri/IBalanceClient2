@@ -13,59 +13,55 @@ namespace LabelPrint
     {
         private static PrintManager _printManager;
 
-        private const string folderName = "Template";
-        private string nameTmp = "Template";
-        private const string format = ".rtf";
+        public List<TemplateVM> templates;
+
+        private String currentTemplate;
+
+        private const string folderName = "Templates";
+        private const string format = ".xml";
 
         private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n" };
 
         private string htmlDocument;
-        public string Template
+
+        public string CurrentTemplate
         {
             get
             {
-                this.LoadRtfTemplate();
-                return htmlDocument;
+                return currentTemplate;
+            }
+
+            set
+            {
+                if (currentTemplate != value)
+                {
+                    LoadTemplate(value);
+                    currentTemplate = value;
+                }
             }
         }
-        public string Path { get { return /*folderName + "//" + */nameTmp + format; } }
-
-        private List<ConsignmentRequestVM> listCodes;
 
         private PrintManager()
         {
-            LoadRtfTemplate();
-            //LoadRtfTemplate2();
+            templates = LoadListTemplate();
+            if (templates.Count > 0)
+                LoadTemplate(templates[0].Name);
         }
         public static PrintManager Instance()
         {
             if (_printManager == null) _printManager = new PrintManager();
             return _printManager;
         }
-        public void SetCodes(List<ConsignmentRequestVM> codes)
-        {
-            this.listCodes = codes;
-        }
-        public void LoadRtfTemplate(string nameFile = null)
-        {
-            string path = folderName + "\\" + (nameFile == null ? nameTmp : nameFile) + format;
-            if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
-            if (!File.Exists(path))
-            {
-                using (StreamWriter sw = new StreamWriter(path, true))
-                {
-                    foreach (string element in this.tags)
-                    {
-                        sw.WriteLine(element);
-                    }
-                    sw.Close();
-                }
-            }
 
-            if (!string.IsNullOrEmpty(nameFile)) this.nameTmp = nameFile;
+        public void LoadTemplate(string nameFile)
+        {
+            string path = folderName + "\\" + (nameFile) + format;
+            if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
+
             DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
-            richEditControl1.LoadDocument(path, DocumentFormat.Rtf);
-            //"Model\n", "ProductionDate\n", "SerialKey\n"
+
+            richEditControl1.LoadDocument(path, DocumentFormat.OpenXml);
+            
             string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
             if (richEditControl1.Document.Text == "")
             {
@@ -88,6 +84,7 @@ namespace LabelPrint
                 result = result.Replace("SerialKey", data.ProductionDate);
             return result;
         }
+
         public List<TemplateVM> LoadListTemplate()
         {
             List<TemplateVM> result = new List<TemplateVM>();
@@ -98,25 +95,14 @@ namespace LabelPrint
             }
             return result;
         }
-        public void ShowPrintPreview(ConsignmentRequestVM data = null)
+
+        public void ShowPrintPreview(List<ConsignmentRequestVM> datas)
         {
-            if (this.listCodes == null || this.listCodes.Count < 0) return;
-            if (data == null)
-                data = this.listCodes.FirstOrDefault();
+            ConsignmentRequestVM data = datas.FirstOrDefault();
 
             DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
             richEditControl1.Document.HtmlText = DataTemplate(data);
             richEditControl1.ShowPrintPreview();
-        }
-        public void ShowPrintDialog(ConsignmentRequestVM data = null)
-        {
-            if (this.listCodes == null || this.listCodes.Count < 0) return;
-            if (data == null)
-                data = this.listCodes.FirstOrDefault();
-
-            DevExpress.XtraRichEdit.RichEditControl richEditControl1 = new RichEditControl();
-            richEditControl1.Document.HtmlText = DataTemplate(data);
-            richEditControl1.ShowPrintDialog();
         }
         public void Print(ConsignmentRequestVM data)
         {
@@ -124,17 +110,12 @@ namespace LabelPrint
             richEditControl1.Document.HtmlText = DataTemplate(data);
             richEditControl1.Print();
         }
-        public void PrintCollection()
+        public void PrintCollection(List<ConsignmentRequestVM> datas)
         {
-            if (this.listCodes != null)
-                foreach (var data in this.listCodes)
-                {
-                    Print(data);
-                }
-        }
-        public void ShowPrintPreviewCollection()
-        {
-            ShowPrintPreview();
+            foreach (var data in datas)
+            {
+                Print(data);
+            }
         }
     }
 }
