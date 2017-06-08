@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraTabbedMdi;
+using System.Globalization;
+using System.Threading;
 
 namespace LabelPrint
 {
@@ -22,6 +24,11 @@ namespace LabelPrint
             XtraTabbedMdiManager mdiManager = new XtraTabbedMdiManager();
             mdiManager.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             mdiManager.MdiParent = this;
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
         }
 
         private void GenerateButton_ItemClick(object sender, ItemClickEventArgs e)
