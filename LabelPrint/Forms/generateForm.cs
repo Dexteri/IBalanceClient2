@@ -75,7 +75,7 @@ namespace LabelPrint
                 consignmentRequestVMBindingSource.Add(item);
         }
 
-        private void simpleButton2_Click(object sender, EventArgs e)
+        private void printButton2_Click(object sender, EventArgs e)
         {
             List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
             var list = gridView1.GetSelectedRows();
@@ -86,7 +86,7 @@ namespace LabelPrint
             this._printManager.PrintCollection(consignments);
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
+        private void previewButton3_Click(object sender, EventArgs e)
         {
             List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
             var list = gridView1.GetSelectedRows();

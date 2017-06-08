@@ -41,6 +41,7 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
+            this.templateVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
@@ -59,7 +60,6 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Шаблон = new DevExpress.XtraLayout.LayoutControlItem();
-            this.templateVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentRequestVMBindingSource)).BeginInit();
@@ -67,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -83,7 +84,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDown1
@@ -209,6 +209,12 @@
             this.lookUpEdit3.Size = new System.Drawing.Size(229, 26);
             this.lookUpEdit3.StyleController = this.dataLayoutControl1;
             this.lookUpEdit3.TabIndex = 15;
+            this.lookUpEdit3.Popup += new System.EventHandler(this.lookUpEdit3_Popup);
+            this.lookUpEdit3.EditValueChanged += new System.EventHandler(this.lookUpEdit3_EditValueChanged);
+            // 
+            // templateVMBindingSource
+            // 
+            this.templateVMBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
             // 
             // simpleButton3
             // 
@@ -222,7 +228,7 @@
             this.simpleButton3.StyleController = this.dataLayoutControl1;
             this.simpleButton3.TabIndex = 14;
             this.simpleButton3.Text = "Предварительный просмотр ";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            this.simpleButton3.Click += new System.EventHandler(this.previewButton3_Click);
             // 
             // simpleButton2
             // 
@@ -236,7 +242,7 @@
             this.simpleButton2.StyleController = this.dataLayoutControl1;
             this.simpleButton2.TabIndex = 13;
             this.simpleButton2.Text = "Печатать";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.simpleButton2.Click += new System.EventHandler(this.printButton2_Click);
             // 
             // lookUpEdit2
             // 
@@ -401,10 +407,6 @@
             this.Шаблон.Size = new System.Drawing.Size(306, 30);
             this.Шаблон.TextSize = new System.Drawing.Size(70, 13);
             // 
-            // templateVMBindingSource
-            // 
-            this.templateVMBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
-            // 
             // GeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,6 +422,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
@@ -436,7 +439,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
