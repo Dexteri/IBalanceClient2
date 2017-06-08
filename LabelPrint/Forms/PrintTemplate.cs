@@ -16,6 +16,12 @@ namespace LabelPrint
         public PrintTemplate()
         {
             InitializeComponent();
+            FillTemplateDefault();
+        }
+        private void FillTemplateDefault()
+        {
+            string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
+            richEditControl1.Document.Text = text;
         }
     }
 }
