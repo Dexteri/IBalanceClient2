@@ -23,19 +23,19 @@ namespace LabelPrint
         {
             InitializeComponent();
             _printManager = PrintManager.Instance();
-            GetFromApi:
-                try
+        GetFromApi:
+            try
+            {
+                products = ClientIbalance.GetProducts();
+                counterparty = ClientIbalance.GetCounterparty();
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
                 {
-                    products = ClientIbalance.GetProducts();
-                    counterparty = ClientIbalance.GetCounterparty();
-                }
-                catch (Exception ex)
-                {
-                    if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
-                    {
                     goto GetFromApi;
-                    }
                 }
+            }
             FillLookUp();
         }
 

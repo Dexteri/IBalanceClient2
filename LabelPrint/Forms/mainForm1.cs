@@ -13,7 +13,7 @@ using System.Globalization;
 using System.Threading;
 using System.IO;
 using LabelPrint.Forms;
-
+using DevExpress.LookAndFeel;
 namespace LabelPrint
 {
     public partial class mainForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -32,6 +32,8 @@ namespace LabelPrint
             Thread.CurrentThread.CurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
+            if(!String.IsNullOrEmpty(LoadSkin()))
+            UserLookAndFeel.Default.SkinName = LoadSkin();
             if (!Directory.Exists("Settings"))
                 Directory.CreateDirectory("Settings");
         }
@@ -84,6 +86,34 @@ namespace LabelPrint
         private void Cp_Disposed(object sender, EventArgs e)
         {
             cp = null;
+        }
+
+        private void mainForm1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string path = "Settings//Skin.txt";
+            try
+            {
+                File.WriteAllText(path, UserLookAndFeel.Default.SkinName);
+            }
+            catch { }
+        }
+
+        private string LoadSkin()
+        {
+            string path = "Settings//Skin.txt";
+            string skin = string.Empty;
+            try
+            {
+                var stream = File.OpenText(path);
+                skin = stream.ReadLine();
+                stream.Close();
+            }
+            catch
+            {
+                var stream = File.Create("Settings//Url.txt");
+                stream.Close();
+            }
+            return skin;
         }
     }
 }

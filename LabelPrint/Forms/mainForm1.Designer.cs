@@ -157,6 +157,7 @@
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "IBalancce";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

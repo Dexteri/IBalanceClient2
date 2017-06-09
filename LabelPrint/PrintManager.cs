@@ -57,7 +57,7 @@ namespace LabelPrint
 
         public void LoadTemplate(string nameFile)
         {
-            string path = folderName + "\\" + (nameFile) + format;
+            string path = folderName + "\\" + (nameFile);
             richEditControl1.LoadDocument(path);
         }
 
@@ -82,7 +82,7 @@ namespace LabelPrint
             if (!Directory.Exists(folderName))
                 Directory.CreateDirectory(folderName);
             foreach (var item in Directory.GetFiles(folderName))
-                result.Add(new TemplateVM() { Name = item.Split('\\')[1].Split('.')[0] });
+                result.Add(new TemplateVM() { Name = item.Split('\\')[1] });
             return result;
         }
 
