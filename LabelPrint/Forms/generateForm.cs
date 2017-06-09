@@ -22,7 +22,7 @@ namespace LabelPrint
         public GeneratorForm()
         {
             InitializeComponent();
-            _printManager = PrintManager.Instance();
+            _printManager = new PrintManager();
         GetFromApi:
             try
             {

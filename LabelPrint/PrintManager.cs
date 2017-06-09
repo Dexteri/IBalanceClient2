@@ -11,7 +11,6 @@ namespace LabelPrint
 {
     public class PrintManager
     {
-        private static PrintManager _printManager;
         DevExpress.XtraRichEdit.RichEditControl richEditControl1;
 
         public List<TemplateVM> templates;
@@ -41,18 +40,13 @@ namespace LabelPrint
             }
         }
 
-        private PrintManager()
+        public PrintManager()
         {
             richEditControl1 = new RichEditControl();
             templates = LoadListTemplate();
             if (templates.Count > 0)
                 LoadTemplate(templates[0].Name);
             richEditControl1 = new RichEditControl();
-        }
-        public static PrintManager Instance()
-        {
-            if (_printManager == null) _printManager = new PrintManager();
-            return _printManager;
         }
 
         public void LoadTemplate(string nameFile)
