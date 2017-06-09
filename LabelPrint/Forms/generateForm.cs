@@ -107,7 +107,7 @@ namespace LabelPrint
                 MessageBox.Show("Шаблон не выбран! Если их нет, то создайте тх в конструкторе.");
                 return;
             }
-            else if (consignment.Count < 1)
+            else if (consignments.Count < 1)
             {
                 MessageBox.Show("Выберите коды!");
                 return;
@@ -128,7 +128,7 @@ namespace LabelPrint
                 MessageBox.Show("Шаблон не выбран! Если их нет, то создайте тх в конструкторе.");
                 return;
             }
-            else if (consignment.Count < 1)
+            else if (consignments.Count < 1)
             {
                 MessageBox.Show("Выберите коды!");
                 return;
