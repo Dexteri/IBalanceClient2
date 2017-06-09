@@ -59,7 +59,7 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Шаблон = new DevExpress.XtraLayout.LayoutControlItem();
+            this.template = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consignmentRequestVMBindingSource)).BeginInit();
@@ -83,7 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.template)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDown1
@@ -303,7 +303,7 @@
             this.emptySpaceItem2,
             this.layoutControlItem7,
             this.layoutControlItem8,
-            this.Шаблон});
+            this.template});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1264, 634);
@@ -401,11 +401,11 @@
             // 
             // Шаблон
             // 
-            this.Шаблон.Control = this.lookUpEdit3;
-            this.Шаблон.Location = new System.Drawing.Point(631, 584);
-            this.Шаблон.Name = "Шаблон";
-            this.Шаблон.Size = new System.Drawing.Size(306, 30);
-            this.Шаблон.TextSize = new System.Drawing.Size(70, 13);
+            this.template.Control = this.lookUpEdit3;
+            this.template.Location = new System.Drawing.Point(631, 584);
+            this.template.Name = "Шаблон";
+            this.template.Size = new System.Drawing.Size(306, 30);
+            this.template.TextSize = new System.Drawing.Size(70, 13);
             // 
             // GeneratorForm
             // 
@@ -438,7 +438,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.template)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,7 +472,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit3;
-        private DevExpress.XtraLayout.LayoutControlItem Шаблон;
+        private DevExpress.XtraLayout.LayoutControlItem template;
         private System.Windows.Forms.BindingSource templateVMBindingSource;
     }
 }

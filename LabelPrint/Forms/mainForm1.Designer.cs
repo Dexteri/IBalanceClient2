@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm1));
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.barButtonConnection = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonConnectionStrings = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.GenerateButton = new DevExpress.XtraBars.BarButtonItem();
@@ -57,7 +56,6 @@
             this.ribbon.ExpandCollapseItem.Id = 0;
             this.ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbon.ExpandCollapseItem,
-            this.barButtonConnection,
             this.barButtonConnectionStrings,
             this.skinRibbonGalleryBarItem1,
             this.GenerateButton,
@@ -72,14 +70,6 @@
             this.ribbon.Size = new System.Drawing.Size(979, 143);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
-            // barButtonConnection
-            // 
-            this.barButtonConnection.Caption = "Подключение ";
-            this.barButtonConnection.Id = 1;
-            this.barButtonConnection.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonConnection.ImageOptions.Image")));
-            this.barButtonConnection.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonConnection.ImageOptions.LargeImage")));
-            this.barButtonConnection.Name = "barButtonConnection";
-            // 
             // barButtonConnectionStrings
             // 
             this.barButtonConnectionStrings.Caption = "Параметры подключения ";
@@ -87,6 +77,7 @@
             this.barButtonConnectionStrings.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonConnectionStrings.ImageOptions.Image")));
             this.barButtonConnectionStrings.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonConnectionStrings.ImageOptions.LargeImage")));
             this.barButtonConnectionStrings.Name = "barButtonConnectionStrings";
+            this.barButtonConnectionStrings.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonConnectionStrings_ItemClick);
             // 
             // skinRibbonGalleryBarItem1
             // 
@@ -144,7 +135,6 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonConnection);
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonConnectionStrings);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "API";
@@ -176,7 +166,6 @@
         #endregion
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
-        private DevExpress.XtraBars.BarButtonItem barButtonConnection;
         private DevExpress.XtraBars.BarButtonItem barButtonConnectionStrings;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;

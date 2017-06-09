@@ -52,9 +52,29 @@ namespace LabelPrint
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             GenerateRequestVM vm = new GenerateRequestVM();
+            if(lookUpEdit1.EditValue == null)
+            {
+                MessageBox.Show("Продукт не выбран!");
+                return;
+            }
             vm.ProductId = int.Parse(lookUpEdit1.EditValue.ToString());
+            if (lookUpEdit2.EditValue == null)
+            {
+                MessageBox.Show("Агент не выбран!");
+                return;
+            }
             vm.CounterpartyId = int.Parse(lookUpEdit2.EditValue.ToString());
+            if (int.Parse(numericUpDown1.Value.ToString()) < 1)
+            {
+                MessageBox.Show("Количество должно быть больше 1!");
+                return;
+            }
             vm.CodesNumber = int.Parse(numericUpDown1.Value.ToString());
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Партия не выбрана!");
+                return;
+            }
             vm.ConsignmentNumber = textBox1.Text;
             List<ConsignmentRequestVM> codes = null;
             GetFromApi:
@@ -82,6 +102,16 @@ namespace LabelPrint
             {
                 consignments.Add((ConsignmentRequestVM)consignmentRequestVMBindingSource.List[i]);
             }
+            if(lookUpEdit3.EditValue == null)
+            {
+                MessageBox.Show("Шаблон не выбран! Если их нет, то создайте тх в конструкторе.");
+                return;
+            }
+            else if (consignment.Count < 1)
+            {
+                MessageBox.Show("Выберите коды!");
+                return;
+            }
             this._printManager.PrintCollection(consignments);
         }
 
@@ -92,6 +122,16 @@ namespace LabelPrint
             foreach (int i in list)
             {
                 consignments.Add((ConsignmentRequestVM)consignmentRequestVMBindingSource.List[i]);
+            }
+            if (lookUpEdit3.EditValue == null)
+            {
+                MessageBox.Show("Шаблон не выбран! Если их нет, то создайте тх в конструкторе.");
+                return;
+            }
+            else if (consignment.Count < 1)
+            {
+                MessageBox.Show("Выберите коды!");
+                return;
             }
             this._printManager.ShowPrintPreview(consignments);
         }

@@ -11,6 +11,8 @@ using DevExpress.XtraBars;
 using DevExpress.XtraTabbedMdi;
 using System.Globalization;
 using System.Threading;
+using System.IO;
+using LabelPrint.Forms;
 
 namespace LabelPrint
 {
@@ -18,6 +20,7 @@ namespace LabelPrint
     {
         GeneratorForm gf;
         PrintTemplate pt;
+        ConnectParametrs cp;
         public mainForm1()
         {
             InitializeComponent();
@@ -29,6 +32,8 @@ namespace LabelPrint
             Thread.CurrentThread.CurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
+            if (!Directory.Exists("Settings"))
+                Directory.CreateDirectory("Settings");
         }
 
         private void GenerateButton_ItemClick(object sender, ItemClickEventArgs e)
@@ -63,6 +68,22 @@ namespace LabelPrint
         private void Pt_Disposed(object sender, EventArgs e)
         {
             pt = null;
+        }
+
+        private void barButtonConnectionStrings_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (cp == null)
+            {
+                cp = new ConnectParametrs();
+                cp.MdiParent = this;
+                cp.Disposed += Cp_Disposed;
+                cp.Show();
+            }
+            cp.Focus();
+        }
+        private void Cp_Disposed(object sender, EventArgs e)
+        {
+            cp = null;
         }
     }
 }
