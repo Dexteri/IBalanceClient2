@@ -27,6 +27,13 @@ namespace LabelPrint
             XtraTabbedMdiManager mdiManager = new XtraTabbedMdiManager();
             mdiManager.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             mdiManager.MdiParent = this;
+            if (gf == null)
+            {
+                gf = new GeneratorForm();
+                gf.MdiParent = this;
+                gf.Disposed += Gf_Disposed;
+                gf.Show();
+            }
             CultureInfo culture = CultureInfo.CreateSpecificCulture("ru-RU");
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
@@ -104,15 +111,17 @@ namespace LabelPrint
             string skin = string.Empty;
             try
             {
+                if (!Directory.Exists("Settings"))
+                    Directory.CreateDirectory("Settings");
+                if (!File.Exists(path))
+                {
+                    File.Create("Settings//Url.txt").Close();
+                }
                 var stream = File.OpenText(path);
                 skin = stream.ReadLine();
                 stream.Close();
             }
-            catch
-            {
-                var stream = File.Create("Settings//Url.txt");
-                stream.Close();
-            }
+            catch { }
             return skin;
         }
     }

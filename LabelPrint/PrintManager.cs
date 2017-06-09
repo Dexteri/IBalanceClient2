@@ -20,7 +20,6 @@ namespace LabelPrint
         private String currentTemplate;
 
         private const string folderName = "Templates";
-        private const string format = ".xml";
 
         private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n" };
         
