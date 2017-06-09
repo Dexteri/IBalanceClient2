@@ -18,16 +18,22 @@ namespace LabelPrint
         {
             List<ProductGenerationRequestVM> list = new List<ProductGenerationRequestVM>();
             var response = client.GetAsync(Url + "get-products", 0).Result;
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
             return response.Content.ReadAsAsync<List<ProductGenerationRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result;
         }
         static public List<CounterpartyGenerationRequestVM> GetCounterparty()
         {
             var response = client.GetAsync(Url + "get-counterparties", 0).Result;
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
             return response.Content.ReadAsAsync<List<CounterpartyGenerationRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result; ;
         }
         static public List<ConsignmentRequestVM> Generate(GenerateRequestVM generateVM)
         {
             var response = client.PostAsJsonAsync(Url + "generate-code", generateVM).Result;
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
             return response.Content.ReadAsAsync<List<ConsignmentRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result; ;
         }
     }

@@ -22,22 +22,20 @@ namespace LabelPrint
         public GeneratorForm()
         {
             InitializeComponent();
-            products = ClientIbalance.GetProducts();
-            counterparty = ClientIbalance.GetCounterparty();
             _printManager = PrintManager.Instance();
             GetFromApi:
-            try
-            {
-                products = ClientIbalance.GetProducts();
-                counterparty = ClientIbalance.GetCounterparty();
-            }
-            catch (Exception ex)
-            {
-                if (MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                try
                 {
-                    goto GetFromApi;
+                    products = ClientIbalance.GetProducts();
+                    counterparty = ClientIbalance.GetCounterparty();
                 }
-            }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                    {
+                    goto GetFromApi;
+                    }
+                }
             FillLookUp();
         }
 
@@ -66,7 +64,7 @@ namespace LabelPrint
                 }
                 catch (Exception ex)
                 {
-                    if (MessageBox.Show(this, "Не могу подключиться к серверу.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                    if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
                     {
                         goto GetFromApi;
                     }
