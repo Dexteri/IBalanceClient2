@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using LabelPrint.Models;
+using System.Drawing.Printing;
 
 namespace LabelPrint
 {
@@ -23,6 +24,7 @@ namespace LabelPrint
         {
             InitializeComponent();
             _printManager = new PrintManager();
+            FillPrinters();
         GetFromApi:
             try
             {
@@ -37,6 +39,14 @@ namespace LabelPrint
                 }
             }
             FillLookUp();
+        }
+
+        private void FillPrinters()
+        {
+            List<String> printers = new List<String>();
+            foreach (String printer in PrinterSettings.InstalledPrinters)
+                printers.Add(printer);
+            lookUpEdit4.Properties.DataSource = printers;
         }
 
         private void FillLookUp()
@@ -112,7 +122,12 @@ namespace LabelPrint
                 MessageBox.Show("Выберите коды!");
                 return;
             }
-            this._printManager.PrintCollection(consignments);
+            else if (lookUpEdit4.EditValue == null)
+            {
+                MessageBox.Show("Выберите принтер!");
+                return;
+            }
+            this._printManager.PrintCollection(consignments, lookUpEdit4.EditValue.ToString());
         }
 
         private void previewButton3_Click(object sender, EventArgs e)

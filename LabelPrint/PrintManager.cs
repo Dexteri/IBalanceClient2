@@ -1,7 +1,9 @@
-﻿using DevExpress.XtraRichEdit;
+﻿using DevExpress.XtraPrinting;
+using DevExpress.XtraRichEdit;
 using LabelPrint.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -87,16 +89,18 @@ namespace LabelPrint
             richEditControl1.Document.WordMLText = DataTemplate(data);
             richEditControl1.ShowPrintPreview();
         }
-        public void Print(ConsignmentRequestVM data)
+        public void Print(ConsignmentRequestVM data, String printerName)
         {
             richEditControl1.Document.WordMLText = DataTemplate(data);
-            richEditControl1.Print();
+            PrintableComponentLink pcl = new PrintableComponentLink(new PrintingSystem());
+            pcl.Component = richEditControl1;
+            pcl.Print(printerName);
         }
-        public void PrintCollection(List<ConsignmentRequestVM> datas)
+        public void PrintCollection(List<ConsignmentRequestVM> datas, String printerName)
         {
             foreach (var data in datas)
             {
-                Print(data);
+                Print(data, printerName);
             }
         }
     }
