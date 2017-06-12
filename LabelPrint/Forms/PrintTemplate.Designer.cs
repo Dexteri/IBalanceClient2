@@ -709,6 +709,7 @@
             this.richEditControl1.Size = new System.Drawing.Size(970, 399);
             this.richEditControl1.TabIndex = 2;
             this.richEditControl1.Text = "richEditControl1";
+            this.richEditControl1.Document.Unit = DevExpress.Office.DocumentUnit.Millimeter;
             // 
             // fontSizeIncreaseItem1
             // 

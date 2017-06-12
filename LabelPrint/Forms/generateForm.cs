@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using LabelPrint.Models;
 using System.Drawing.Printing;
+using LabelPrint.Setup;
 
 namespace LabelPrint
 {
@@ -39,6 +40,8 @@ namespace LabelPrint
                 }
             }
             FillLookUp();
+
+            this.lookUpEdit3.Properties.NullText = DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE);
         }
 
         private void FillPrinters()
@@ -56,7 +59,7 @@ namespace LabelPrint
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
             foreach (var item in _printManager.templates)
-                templateVMBindingSource.Add(item);
+                templateVMBindingSource.Add(item); 
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -153,6 +156,8 @@ namespace LabelPrint
         private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
         {
             _printManager.LoadTemplate(lookUpEdit3.EditValue.ToString());
+
+            DefaultSettings.Set(XmlNodeName.LAST_SELECTED_TEMPLATE, lookUpEdit3.EditValue.ToString());
         }
         private void lookUpEdit3_Popup(object sender, EventArgs e)
         {

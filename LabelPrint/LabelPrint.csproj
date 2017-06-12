@@ -102,6 +102,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OnBarcode.Barcode.WinForms">
+      <HintPath>..\..\..\OnBarcode.Barcode.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -156,6 +159,8 @@
     <Compile Include="PrintManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\DefaultSettings.cs" />
+    <Compile Include="Setup\XmlNodeName.cs" />
     <EmbeddedResource Include="Forms\ConnectParametrs.resx">
       <DependentUpon>ConnectParametrs.cs</DependentUpon>
     </EmbeddedResource>

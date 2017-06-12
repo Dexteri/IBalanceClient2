@@ -1,4 +1,5 @@
 ﻿using LabelPrint.Models;
+using LabelPrint.Setup;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +25,7 @@ namespace LabelPrint
                 {
                     try
                     {
-                        var stream = File.OpenText(path);
-                        url = stream.ReadLine();
-                        stream.Close();
+                        url = DefaultSettings.Get(XmlNodeName.URL);
                     }
                     catch { }
                 }
@@ -59,7 +58,7 @@ namespace LabelPrint
             var response = client.PostAsJsonAsync(Url + "api/client/generate-code", generateVM).Result;
             if (!response.IsSuccessStatusCode)
                 throw new Exception(response.ReasonPhrase);
-            return response.Content.ReadAsAsync<List<ConsignmentRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result; ;
+            return response.Content.ReadAsAsync<List<ConsignmentRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result;
         }
         public static bool Check()
         {

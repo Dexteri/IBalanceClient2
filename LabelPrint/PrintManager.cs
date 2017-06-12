@@ -1,9 +1,9 @@
 ﻿using DevExpress.XtraPrinting;
 using DevExpress.XtraRichEdit;
 using LabelPrint.Models;
+using OnBarcode.Barcode;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,7 @@ namespace LabelPrint
 
         private const string folderName = "Templates";
 
-        private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n" };
+        private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n"};
         
 
         public string CurrentTemplate
@@ -59,6 +59,8 @@ namespace LabelPrint
         public string DataTemplate(ConsignmentRequestVM data)
         {
             string result = this.richEditControl1.WordMLText;
+            string start = ">iVBORw0";
+            string barCode = GenerateBacode(data.SerialKey);
             if (data != null)
             {
                 if (result.Contains("Model"))
@@ -67,8 +69,37 @@ namespace LabelPrint
                     result = result.Replace("ProductionDate", data.ProductionDate);
                 if (result.Contains("SerialKey"))
                     result = result.Replace("SerialKey", data.SerialKey);
+                int index = result.IndexOf(start);
+                bool checkImageString = false;
+                string defaultImage = string.Empty;
+                for(int i = index; i< result.Length; i++)
+                {
+                    if (result[i].ToString().Equals("<"))
+                    {
+                        break;
+                    }
+                    if (checkImageString)
+                    {
+                        defaultImage += result[i].ToString();
+                    }
+                    if (result[i].ToString().Equals(">"))
+                    {
+                        checkImageString = !checkImageString;
+                    }   
+                }
+                if (result.Contains(defaultImage))
+                    result = result.Replace(defaultImage, barCode);
             }
             return result;
+        }
+
+        private string GenerateBacode(string _data)
+        {
+            Linear barcode = new Linear();
+            barcode.Type = BarcodeType.CODE11;
+            barcode.Data = _data;
+            byte[] array = barcode.drawBarcodeAsBytes();
+            return Convert.ToBase64String(array);
         }
 
         public List<TemplateVM> LoadListTemplate()
@@ -83,10 +114,13 @@ namespace LabelPrint
 
         public void ShowPrintPreview(List<ConsignmentRequestVM> datas)
         {
-            ConsignmentRequestVM data = datas.FirstOrDefault();
-            
-            richEditControl1.Document.WordMLText = DataTemplate(data);
-            richEditControl1.ShowPrintPreview();
+            if (this.richEditControl1.IsPrintingAvailable)
+            {
+                ConsignmentRequestVM data = datas.FirstOrDefault();
+
+                richEditControl1.Document.WordMLText = DataTemplate(data);
+                richEditControl1.ShowPrintPreview();
+            }
         }
         public void Print(ConsignmentRequestVM data, String printerName)
         {

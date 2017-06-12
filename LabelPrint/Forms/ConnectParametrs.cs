@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LabelPrint.Setup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,31 +18,14 @@ namespace LabelPrint.Forms
         public ConnectParametrs()
         {
             InitializeComponent();
-            textBox1.Text = GetUrl(); 
-        }
-
-        private string GetUrl()
-        {
-            string url = string.Empty;
-            try
-            {
-                var stream = File.OpenText(path);
-                url = stream.ReadLine();
-                stream.Close();
-            }
-            catch
-            {
-                var stream = File.Create("Settings//Url.txt");
-                stream.Close();
-            }
-            return url;
+            textBox1.Text = DefaultSettings.Get(XmlNodeName.URL); 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                File.WriteAllText(path, textBox1.Text);
+                DefaultSettings.Set(XmlNodeName.URL, textBox1.Text);
             }
             catch { }
         }
