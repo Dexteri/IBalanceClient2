@@ -110,6 +110,7 @@ namespace LabelPrint
 
         private void printButton2_Click(object sender, EventArgs e)
         {
+            _printManager.LoadTemplate(lookUpEdit3.EditValue.ToString());
             List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
             var list = gridView1.GetSelectedRows();
             foreach (int i in list)
@@ -136,6 +137,7 @@ namespace LabelPrint
 
         private void previewButton3_Click(object sender, EventArgs e)
         {
+            _printManager.LoadTemplate(lookUpEdit3.EditValue.ToString());
             List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
             var list = gridView1.GetSelectedRows();
             foreach (int i in list)

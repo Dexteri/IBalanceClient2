@@ -22,7 +22,7 @@ namespace LabelPrint
 
         private const string folderName = "Templates";
 
-        private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n" };
+        private string[] tags = new string[] { "ModelKey\n", "ProdDate\n", "SerialKey\n" };
 
 
         public string CurrentTemplate
@@ -63,15 +63,15 @@ namespace LabelPrint
            
             if (data != null)
             {
-                if (result.Contains("Model"))
-                    result = result.Replace("Model", data.Model);
-                if (result.Contains("ProductionDate"))
-                    result = result.Replace("ProductionDate", data.ProductionDate);
+                if (result.Contains("ModelKey"))
+                    result = result.Replace("ModelKey", data.Model);
+                if (result.Contains("ProdDate"))
+                    result = result.Replace("ProdDate", data.ProductionDate);
                 if (result.Contains("SerialKey"))
                     result = result.Replace("SerialKey", data.SerialKey);
 
                 string image1 = GetDefaultStringImage(result, 1);
-                string image2 = GetDefaultStringImage(result, 2);
+                string image2 = GetDefaultStringImage(result, 0);
 
                 if (result.Contains(image1))
                     result = result.Replace(image1, GenerateBacode(data.Model));
@@ -84,8 +84,16 @@ namespace LabelPrint
 
         private string GetDefaultStringImage(string text, int number_image)
         {
-            string start = "image"+number_image+".png\">";
-            int index = text.IndexOf(start);
+            string start = ".png\">";
+            int index = text.LastIndexOf(start);
+            if (number_image == 1)
+                index = text.Remove(index).LastIndexOf(start);
+            while (true)
+            {
+                index--;
+                if (text[index] == 'i')
+                    break;
+            }
             bool checkImageString = false;
             string defaultImage = string.Empty;
             for (int i = index; i < text.Length; i++)
