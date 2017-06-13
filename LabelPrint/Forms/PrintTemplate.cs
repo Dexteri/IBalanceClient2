@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.Commands;
 using DevExpress.XtraRichEdit.Services;
+using LabelPrint.Setup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,17 +18,25 @@ namespace LabelPrint
 {
     public partial class PrintTemplate : Form
     {
-        private const string folderName = "Templates";
+        private readonly string path = "Templates\\" + DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE);
         public PrintTemplate()
         {
             InitializeComponent();
+            this.richEditControl1.EmptyDocumentCreated += RichEditControl1_EmptyDocumentCreated;
+            if (File.Exists(path))
+                this.richEditControl1.LoadDocument(path);
+            else
+                FillTemplateDefault();
+        }
+
+        private void RichEditControl1_EmptyDocumentCreated(object sender, EventArgs e)
+        {
             FillTemplateDefault();
         }
+
         private void FillTemplateDefault()
         {
             string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
-            if (!Directory.Exists(folderName))
-                Directory.CreateDirectory(folderName);
             richEditControl1.Document.Text = text;
             richEditControl1.Document.AppendImage(DrawText());
 
@@ -41,6 +50,11 @@ namespace LabelPrint
             Graphics drawing = Graphics.FromImage(img);
             drawing.Save();
             return img;
+
+        }
+
+        private void fileNewItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
 
         }
     }

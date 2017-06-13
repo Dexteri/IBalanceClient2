@@ -4,6 +4,7 @@ using LabelPrint.Models;
 using OnBarcode.Barcode;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,8 @@ namespace LabelPrint
 
         private const string folderName = "Templates";
 
-        private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n"};
-        
+        private string[] tags = new string[] { "Model\n", "ProductionDate\n", "SerialKey\n" };
+
 
         public string CurrentTemplate
         {
@@ -72,7 +73,7 @@ namespace LabelPrint
                 int index = result.IndexOf(start);
                 bool checkImageString = false;
                 string defaultImage = string.Empty;
-                for(int i = index; i< result.Length; i++)
+                for (int i = index; i < result.Length; i++)
                 {
                     if (result[i].ToString().Equals("<"))
                     {
@@ -85,7 +86,7 @@ namespace LabelPrint
                     if (result[i].ToString().Equals(">"))
                     {
                         checkImageString = !checkImageString;
-                    }   
+                    }
                 }
                 if (result.Contains(defaultImage))
                     result = result.Replace(defaultImage, barCode);
@@ -96,7 +97,7 @@ namespace LabelPrint
         private string GenerateBacode(string _data)
         {
             Linear barcode = new Linear();
-            barcode.Type = BarcodeType.CODE11;
+            barcode.Type = BarcodeType.CODE128;
             barcode.Data = _data;
             byte[] array = barcode.drawBarcodeAsBytes();
             return Convert.ToBase64String(array);

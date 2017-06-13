@@ -26,7 +26,7 @@ namespace LabelPrint
             InitializeComponent();
             _printManager = new PrintManager();
             FillPrinters();
-        GetFromApi:
+            GetFromApi:
             try
             {
                 products = ClientIbalance.GetProducts();
@@ -41,7 +41,8 @@ namespace LabelPrint
             }
             FillLookUp();
 
-            this.lookUpEdit3.Properties.NullText = DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE);
+            this.lookUpEdit3.EditValue = _printManager.templates
+                .FirstOrDefault(x => x.Name.Equals(DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE)))?.Name;
         }
 
         private void FillPrinters()
@@ -59,13 +60,13 @@ namespace LabelPrint
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
             foreach (var item in _printManager.templates)
-                templateVMBindingSource.Add(item); 
+                templateVMBindingSource.Add(item);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             GenerateRequestVM vm = new GenerateRequestVM();
-            if(lookUpEdit1.EditValue == null)
+            if (lookUpEdit1.EditValue == null)
             {
                 MessageBox.Show("Продукт не выбран!");
                 return;
@@ -91,17 +92,17 @@ namespace LabelPrint
             vm.ConsignmentNumber = textBox1.Text;
             List<ConsignmentRequestVM> codes = null;
             GetFromApi:
-                try
+            try
+            {
+                codes = ClientIbalance.Generate(vm);
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
                 {
-                    codes = ClientIbalance.Generate(vm);
+                    goto GetFromApi;
                 }
-                catch (Exception ex)
-                {
-                    if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
-                    {
-                        goto GetFromApi;
-                    }
-                }
+            }
             consignmentRequestVMBindingSource.Clear();
             foreach (var item in codes)
                 consignmentRequestVMBindingSource.Add(item);
@@ -111,11 +112,11 @@ namespace LabelPrint
         {
             List<ConsignmentRequestVM> consignments = new List<ConsignmentRequestVM>();
             var list = gridView1.GetSelectedRows();
-            foreach(int i in list)
+            foreach (int i in list)
             {
                 consignments.Add((ConsignmentRequestVM)consignmentRequestVMBindingSource.List[i]);
             }
-            if(lookUpEdit3.EditValue == null)
+            if (lookUpEdit3.EditValue == null)
             {
                 MessageBox.Show("Шаблон не выбран! Если их нет, то создайте тх в конструкторе.");
                 return;

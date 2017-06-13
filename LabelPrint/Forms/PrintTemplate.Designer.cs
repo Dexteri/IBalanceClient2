@@ -709,7 +709,7 @@
             this.richEditControl1.Size = new System.Drawing.Size(970, 399);
             this.richEditControl1.TabIndex = 2;
             this.richEditControl1.Text = "richEditControl1";
-            this.richEditControl1.Document.Unit = DevExpress.Office.DocumentUnit.Millimeter;
+            this.richEditControl1.Unit = DevExpress.Office.DocumentUnit.Millimeter;
             // 
             // fontSizeIncreaseItem1
             // 
@@ -1011,6 +1011,7 @@
             // 
             this.fileNewItem1.Id = 60;
             this.fileNewItem1.Name = "fileNewItem1";
+            this.fileNewItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileNewItem1_ItemClick);
             // 
             // fileOpenItem1
             // 
