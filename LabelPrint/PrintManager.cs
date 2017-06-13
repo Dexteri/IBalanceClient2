@@ -77,7 +77,7 @@ namespace LabelPrint
                     result = result.Replace(image1, GenerateBacode(data.Model));
 
                 if (result.Contains(image2))
-                    result = result.Replace(image2, GenerateBacode(data.Model));
+                    result = result.Replace(image2, GenerateBacode(data.SerialKey));
             }
             return result;
         }
@@ -110,6 +110,8 @@ namespace LabelPrint
             Linear barcode = new Linear();
             barcode.Type = BarcodeType.CODE128;
             barcode.Data = _data;
+            barcode.BarcodeWidth = 100.0f;
+            barcode.BarcodeHeight = 50.0f;
             byte[] array = barcode.drawBarcodeAsBytes();
             return Convert.ToBase64String(array);
         }

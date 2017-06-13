@@ -36,6 +36,7 @@ namespace LabelPrint
 
         private void FillTemplateDefault()
         {
+            richEditControl1.Document.Text = string.Empty;
             richEditControl1.Document.AppendText("ProductionDate \n\r");
             richEditControl1.Document.AppendText("Model \n\r");
             richEditControl1.Document.AppendImage(DrawTextTmp("Model"));
