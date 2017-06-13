@@ -84,7 +84,7 @@ namespace LabelPrint
 
         private string GetDefaultStringImage(string text, int number_image)
         {
-            string start = "image"+number_image+".png\">iVBORw0";
+            string start = "image"+number_image+".png\">";
             int index = text.IndexOf(start);
             bool checkImageString = false;
             string defaultImage = string.Empty;

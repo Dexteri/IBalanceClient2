@@ -103,7 +103,7 @@
       <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OnBarcode.Barcode.WinForms">
-      <HintPath>..\packages\OnBarcode.Barcode.WinForms.dll</HintPath>
+      <HintPath>C:\Users\Andrii\Desktop\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
