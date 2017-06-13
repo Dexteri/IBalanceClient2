@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraTabbedMdi;
@@ -15,6 +8,7 @@ using System.IO;
 using LabelPrint.Forms;
 using DevExpress.LookAndFeel;
 using LabelPrint.Setup;
+using DevExpress.UserSkins;
 
 namespace LabelPrint
 {
@@ -23,6 +17,7 @@ namespace LabelPrint
         GeneratorForm gf;
         PrintTemplate pt;
         ConnectParametrs cp;
+        ArchiveForm af;
         public mainForm1()
         {
             InitializeComponent();
@@ -42,6 +37,7 @@ namespace LabelPrint
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
             string skinLoad = DefaultSettings.Get(XmlNodeName.LAST_SELECTED_SKIN);
+            BonusSkins.Register();
             if (!String.IsNullOrEmpty(skinLoad))
                 UserLookAndFeel.Default.SkinName = skinLoad;
             if (!Directory.Exists("Settings"))
@@ -105,6 +101,23 @@ namespace LabelPrint
                 DefaultSettings.Set(XmlNodeName.LAST_SELECTED_SKIN, UserLookAndFeel.Default.SkinName);
             }
             catch { }
+        }
+
+        private void barButtonArchive_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (af == null)
+            {
+                af = new ArchiveForm();
+                af.MdiParent = this;
+                af.Disposed += Af_Disposed;
+                af.Show();
+            }
+            af.Focus();
+        }
+
+        private void Af_Disposed(object sender, EventArgs e)
+        {
+            af = null;
         }
     }
 }

@@ -154,7 +154,7 @@
             this.ClientSize = new System.Drawing.Size(1127, 523);
             this.Controls.Add(this.dataLayoutControl1);
             this.Name = "ConnectParametrs";
-            this.Text = "ConnectParametrs";
+            this.Text = "Параметры подключения";
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();

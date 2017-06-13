@@ -164,7 +164,7 @@ namespace LabelPrint
         {
             while (templateVMBindingSource.Count > 0)
                 templateVMBindingSource.RemoveAt(0);
-
+            _printManager.templates = _printManager.LoadListTemplate();
             foreach (var item in _printManager.templates)
             {
                 templateVMBindingSource.Add(item);

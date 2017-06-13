@@ -41,8 +41,8 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.lookUpEdit4 = new DevExpress.XtraEditors.LookUpEdit();
-            this.templateVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
+            this.templateVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
@@ -69,8 +69,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -212,10 +212,6 @@
             this.lookUpEdit4.StyleController = this.dataLayoutControl1;
             this.lookUpEdit4.TabIndex = 16;
             // 
-            // templateVMBindingSource
-            // 
-            this.templateVMBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
-            // 
             // lookUpEdit3
             // 
             this.lookUpEdit3.Location = new System.Drawing.Point(716, 596);
@@ -231,8 +227,12 @@
             this.lookUpEdit3.Size = new System.Drawing.Size(229, 26);
             this.lookUpEdit3.StyleController = this.dataLayoutControl1;
             this.lookUpEdit3.TabIndex = 15;
-            this.lookUpEdit3.Popup += new System.EventHandler(this.lookUpEdit3_Popup);
+            this.lookUpEdit3.BeforePopup += new System.EventHandler(this.lookUpEdit3_Popup);
             this.lookUpEdit3.EditValueChanged += new System.EventHandler(this.lookUpEdit3_EditValueChanged);
+            // 
+            // templateVMBindingSource
+            // 
+            this.templateVMBindingSource.DataSource = typeof(LabelPrint.Models.TemplateVM);
             // 
             // simpleButton3
             // 
@@ -449,8 +449,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateVMBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.counterpartyGenerationRequestVMBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
