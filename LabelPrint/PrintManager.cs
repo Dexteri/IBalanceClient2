@@ -60,8 +60,7 @@ namespace LabelPrint
         public string DataTemplate(ConsignmentRequestVM data)
         {
             string result = this.richEditControl1.WordMLText;
-            string start = ">iVBORw0";
-            string barCode = GenerateBacode(data.SerialKey);
+           
             if (data != null)
             {
                 if (result.Contains("Model"))
@@ -70,30 +69,42 @@ namespace LabelPrint
                     result = result.Replace("ProductionDate", data.ProductionDate);
                 if (result.Contains("SerialKey"))
                     result = result.Replace("SerialKey", data.SerialKey);
-                int index = result.IndexOf(start);
-                bool checkImageString = false;
-                string defaultImage = string.Empty;
-                for (int i = index; i < result.Length; i++)
-                {
-                    if (result[i].ToString().Equals("<"))
-                    {
-                        break;
-                    }
-                    if (checkImageString)
-                    {
-                        defaultImage += result[i].ToString();
-                    }
-                    if (result[i].ToString().Equals(">"))
-                    {
-                        checkImageString = !checkImageString;
-                    }
-                }
-                if (result.Contains(defaultImage))
-                    result = result.Replace(defaultImage, barCode);
+
+                string image1 = GetDefaultStringImage(result, 1);
+                string image2 = GetDefaultStringImage(result, 2);
+
+                if (result.Contains(image1))
+                    result = result.Replace(image1, GenerateBacode(data.Model));
+
+                if (result.Contains(image2))
+                    result = result.Replace(image2, GenerateBacode(data.Model));
             }
             return result;
         }
 
+        private string GetDefaultStringImage(string text, int number_image)
+        {
+            string start = "image"+number_image+".png\">iVBORw0";
+            int index = text.IndexOf(start);
+            bool checkImageString = false;
+            string defaultImage = string.Empty;
+            for (int i = index; i < text.Length; i++)
+            {
+                if (text[i].ToString().Equals("<"))
+                {
+                    break;
+                }
+                if (checkImageString)
+                {
+                    defaultImage += text[i].ToString();
+                }
+                if (text[i].ToString().Equals(">"))
+                {
+                    checkImageString = !checkImageString;
+                }
+            }
+            return defaultImage;
+        }
         private string GenerateBacode(string _data)
         {
             Linear barcode = new Linear();

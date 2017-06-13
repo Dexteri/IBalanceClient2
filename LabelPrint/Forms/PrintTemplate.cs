@@ -36,19 +36,38 @@ namespace LabelPrint
 
         private void FillTemplateDefault()
         {
-            string text = "Model \n\r" + "ProductionDate \n\r" + "SerialKey \n\r";
-            richEditControl1.Document.Text = text;
-            richEditControl1.Document.AppendImage(DrawText());
+            richEditControl1.Document.AppendText("ProductionDate \n\r");
+            richEditControl1.Document.AppendText("Model \n\r");
+            richEditControl1.Document.AppendImage(DrawTextTmp("Model"));
+            richEditControl1.Document.AppendParagraph();
+            richEditControl1.Document.AppendText("SerialKey \n\r");
+            richEditControl1.Document.AppendImage(DrawTextTmp("SerialKey"));
 
             this.richEditControl1.Options.DocumentSaveOptions.DefaultFormat = DocumentFormat.OpenXml;
             this.richEditControl1.Options.DocumentSaveOptions.DefaultFileName = @"Templates\Template";
         }
-
-        private Image DrawText()
+        private Image DrawTextTmp(String text)
         {
-            Image img = new Bitmap(100, 100);
+            Image img = new Bitmap(1, 1);
             Graphics drawing = Graphics.FromImage(img);
+            Font font = new Font("Arial", 10);
+            Color textColor = Color.Yellow;
+            Color backColor = Color.Black;
+            SizeF textSize = drawing.MeasureString(text, font);
+            img.Dispose();
+            drawing.Dispose();
+            img = new Bitmap((int)textSize.Width, (int)textSize.Height);
+            drawing = Graphics.FromImage(img);
+            drawing.Clear(backColor);
+            Brush textBrush = new SolidBrush(textColor);
+
+            drawing.DrawString(text, font, textBrush, 0, 0);
+
             drawing.Save();
+
+            textBrush.Dispose();
+            drawing.Dispose();
+
             return img;
 
         }
