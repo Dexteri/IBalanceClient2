@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zen.Barcode;
 
 namespace LabelPrint
 {
@@ -57,7 +58,7 @@ namespace LabelPrint
         public string DataTemplate(ConsignmentRequestVM data)
         {
             string result = this.richEditControl1.WordMLText;
-           
+
             if (data != null)
             {
                 if (result.Contains("ModelKey"))
@@ -71,10 +72,16 @@ namespace LabelPrint
                 string image2 = GetDefaultStringImage(result, 0);
 
                 if (result.Contains(image1))
-                    result = result.Replace(image1, GenerateBacode(data.Model));
+                {
+                    //result = result.Replace(image1, GenerateBacode(data.Model, sizeIm1));
+                    result = result.Replace(image1, getBarcode(data.Model));
+                }
 
                 if (result.Contains(image2))
-                    result = result.Replace(image2, GenerateBacode(data.SerialKey));
+                {
+                   // result = result.Replace(image2, GenerateBacode(data.SerialKey, sizeIm2));
+                    result = result.Replace(image2, getBarcode(data.SerialKey));
+                }
             }
             return result;
         }
@@ -110,7 +117,8 @@ namespace LabelPrint
             }
             return defaultImage;
         }
-        private string GenerateBacode(string _data)
+       
+        private string GenerateBacode(string _data, string size)
         {
             Linear barcode = new Linear();
             barcode.Type = BarcodeType.CODE128;
@@ -119,8 +127,27 @@ namespace LabelPrint
             //barcode.BarcodeWidth = 100f;
             //barcode.BarcodeHeight = 100f;
             byte[] array = barcode.drawBarcodeAsBytes();
+
             return Convert.ToBase64String(array);
         }
+
+        private string getBarcode(string text)
+        {
+            BarcodeSymbology s = BarcodeSymbology.Code128;
+            BarcodeDraw drawObject = BarcodeDrawFactory.GetSymbology(s);
+            var metrics = drawObject.GetDefaultMetrics(60);
+            metrics.Scale = 2;
+            var barcodeImage = drawObject.Draw(text, metrics);
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                barcodeImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] imageBytes = ms.ToArray();
+
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
+
 
         public void LoadListTemplate()
         {
