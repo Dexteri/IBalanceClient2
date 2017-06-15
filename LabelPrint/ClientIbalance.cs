@@ -33,6 +33,15 @@ namespace LabelPrint
             }
         }
 
+        internal static List<Consignment> GetConsignments()
+        {
+            List<Consignment> list = new List<Consignment>();
+            var response = client.GetAsync(Url + "api/client/get-consignments", 0).Result;
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase);
+            return response.Content.ReadAsAsync<List<Consignment>>(new[] { new JsonMediaTypeFormatter() }).Result;
+        }
+
         static public List<ProductGenerationRequestVM> GetProducts()
         {
             List<ProductGenerationRequestVM> list = new List<ProductGenerationRequestVM>();
@@ -54,6 +63,13 @@ namespace LabelPrint
             if (!response.IsSuccessStatusCode)
                 throw new Exception(response.ReasonPhrase);
             return response.Content.ReadAsAsync<List<ConsignmentRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result;
+        }
+        static public bool DeleteConsignments(List<int> idList)
+        {
+            var response = client.PostAsJsonAsync(Url + "api/client/delete-consignments", idList).Result;
+            if (!response.IsSuccessStatusCode)
+                return false;
+            return true;
         }
         public static bool Check()
         {
