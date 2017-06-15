@@ -150,6 +150,7 @@ namespace LabelPrint.Forms
                 if (ClientIbalance.DeleteConsignments(idList))
                 {
                     ConnectToServer();
+                    consignmentBindingSource.Clear();
                     foreach (var item in consignments)
                         consignmentBindingSource.Add(item);
                     gridView1.RefreshData();
