@@ -115,8 +115,9 @@ namespace LabelPrint
             Linear barcode = new Linear();
             barcode.Type = BarcodeType.CODE128;
             barcode.Data = _data;
-            barcode.BarcodeWidth = 100.0f;
-            barcode.BarcodeHeight = 50.0f;
+            barcode.TextFont = new Font("Arial", 12);
+            //barcode.BarcodeWidth = 100f;
+            //barcode.BarcodeHeight = 100f;
             byte[] array = barcode.drawBarcodeAsBytes();
             return Convert.ToBase64String(array);
         }
