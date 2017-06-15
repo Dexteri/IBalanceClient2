@@ -68,7 +68,7 @@ namespace LabelPrint
         {
             var response = client.PostAsJsonAsync(Url + "api/client/delete-consignments", idList).Result;
             if (!response.IsSuccessStatusCode)
-                return false;
+                return true;
             return true;
         }
         public static bool Check()

@@ -165,7 +165,7 @@
       <DependentUpon>PrintTemplate.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\TemplateVM.cs" />
-    <Compile Include="PrintManager.cs" />
+    <Compile Include="Forms\PrintManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\DefaultSettings.cs" />

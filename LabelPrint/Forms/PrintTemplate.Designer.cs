@@ -1011,7 +1011,6 @@
             // 
             this.fileNewItem1.Id = 60;
             this.fileNewItem1.Name = "fileNewItem1";
-            this.fileNewItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileNewItem1_ItemClick);
             // 
             // fileOpenItem1
             // 

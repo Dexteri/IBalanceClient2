@@ -72,10 +72,5 @@ namespace LabelPrint
             return img;
 
         }
-
-        private void fileNewItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
     }
 }
