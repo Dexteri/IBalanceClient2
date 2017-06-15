@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using LabelPrint.Models;
 using System.Drawing.Printing;
 using LabelPrint.Setup;
@@ -16,41 +10,60 @@ namespace LabelPrint
 {
     public partial class GeneratorForm : DevExpress.XtraEditors.XtraForm
     {
+        #region members
         private PrintManager _printManager;
         List<ProductGenerationRequestVM> products = new List<ProductGenerationRequestVM>();
         List<CounterpartyGenerationRequestVM> counterparty = new List<CounterpartyGenerationRequestVM>();
         List<ConsignmentRequestVM> consignment = new List<ConsignmentRequestVM>();
         List<TemplateVM> templates = new List<TemplateVM>();
+        #endregion
+
+        #region constructor
         public GeneratorForm()
         {
             InitializeComponent();
             _printManager = new PrintManager();
-            FillPrinters();
-            GetFromApi:
-            try
+            FillPrintersAndTemplates();
+            ConnectToServer();
+            FillLookUp();
+        }
+        #endregion
+
+        #region fill date
+        private void ConnectToServer()
+        {
+            bool conn = true;
+            while (conn)
             {
-                products = ClientIbalance.GetProducts();
-                counterparty = ClientIbalance.GetCounterparty();
-            }
-            catch (Exception ex)
-            {
-                if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                try
                 {
-                    goto GetFromApi;
+                    products = ClientIbalance.GetProducts();
+                    counterparty = ClientIbalance.GetCounterparty();
+                    conn = false;
+                }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.RetryCancel) == DialogResult.Retry)
+                    {
+                        conn = true;
+                    }
+                    else
+                    {
+                        conn = false;
+                    }
                 }
             }
-            FillLookUp();
-
-            this.lookUpEdit3.EditValue = _printManager.templates
-                .FirstOrDefault(x => x.Name.Equals(DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE)))?.Name;
         }
 
-        private void FillPrinters()
+        private void FillPrintersAndTemplates()
         {
             List<String> printers = new List<String>();
             foreach (String printer in PrinterSettings.InstalledPrinters)
                 printers.Add(printer);
             lookUpEdit4.Properties.DataSource = printers;
+
+            this.lookUpEdit3.EditValue = _printManager.templates
+                .FirstOrDefault(x => x.Name.Equals(DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE)))?.Name;
         }
 
         private void FillLookUp()
@@ -62,7 +75,9 @@ namespace LabelPrint
             foreach (var item in _printManager.templates)
                 templateVMBindingSource.Add(item);
         }
+        #endregion
 
+        #region events
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             GenerateRequestVM vm = new GenerateRequestVM();
@@ -156,21 +171,24 @@ namespace LabelPrint
             }
             this._printManager.ShowPrintPreview(consignments);
         }
+
         private void lookUpEdit3_EditValueChanged(object sender, EventArgs e)
         {
             _printManager.LoadTemplate(lookUpEdit3.EditValue.ToString());
 
             DefaultSettings.Set(XmlNodeName.LAST_SELECTED_TEMPLATE, lookUpEdit3.EditValue.ToString());
         }
+
         private void lookUpEdit3_Popup(object sender, EventArgs e)
         {
             while (templateVMBindingSource.Count > 0)
                 templateVMBindingSource.RemoveAt(0);
-            _printManager.templates = _printManager.LoadListTemplate();
+            _printManager.LoadListTemplate();
             foreach (var item in _printManager.templates)
             {
                 templateVMBindingSource.Add(item);
             }
         }
+        #endregion
     }
 }

@@ -2,18 +2,13 @@
 using LabelPrint.Setup;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LabelPrint
 {
     class ClientIbalance
     {
-        static string path = "Settings//Url.txt";
         private static string url = String.Empty;
         static HttpClient client = new HttpClient();
 

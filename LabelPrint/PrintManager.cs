@@ -22,9 +22,6 @@ namespace LabelPrint
 
         private const string folderName = "Templates";
 
-        private string[] tags = new string[] { "ModelKey\n", "ProdDate\n", "SerialKey\n" };
-
-
         public string CurrentTemplate
         {
             get
@@ -45,7 +42,7 @@ namespace LabelPrint
         public PrintManager()
         {
             richEditControl1 = new RichEditControl();
-            templates = LoadListTemplate();
+            LoadListTemplate();
             if (templates.Count > 0)
                 LoadTemplate(templates[0].Name);
             richEditControl1 = new RichEditControl();
@@ -124,14 +121,14 @@ namespace LabelPrint
             return Convert.ToBase64String(array);
         }
 
-        public List<TemplateVM> LoadListTemplate()
+        public void LoadListTemplate()
         {
             List<TemplateVM> result = new List<TemplateVM>();
             if (!Directory.Exists(folderName))
                 Directory.CreateDirectory(folderName);
             foreach (var item in Directory.GetFiles(folderName))
                 result.Add(new TemplateVM() { Name = item.Split('\\')[1] });
-            return result;
+            templates = result;
         }
 
         public void ShowPrintPreview(List<ConsignmentRequestVM> datas)
