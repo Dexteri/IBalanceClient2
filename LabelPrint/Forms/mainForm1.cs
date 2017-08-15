@@ -39,7 +39,7 @@ namespace LabelPrint
             CultureInfo.DefaultThreadCurrentUICulture = culture;
             string skinLoad = DefaultSettings.Get(XmlNodeName.LAST_SELECTED_SKIN);
             BonusSkins.Register();
-            SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1,true); 
+            SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1, true);
             if (!String.IsNullOrEmpty(skinLoad))
                 UserLookAndFeel.Default.SkinName = skinLoad;
             if (!Directory.Exists("Settings"))

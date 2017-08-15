@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -114,9 +114,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.consignmentRequestVMBindingSource;
             this.gridControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.gridControl1.Location = new System.Drawing.Point(12, 42);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -227,7 +227,7 @@
             this.lookUpEdit3.Size = new System.Drawing.Size(229, 26);
             this.lookUpEdit3.StyleController = this.dataLayoutControl1;
             this.lookUpEdit3.TabIndex = 15;
-            this.lookUpEdit3.BeforePopup += new System.EventHandler(this.lookUpEdit3_Popup);
+            this.lookUpEdit3.Popup += new System.EventHandler(this.lookUpEdit3_Popup);
             this.lookUpEdit3.EditValueChanged += new System.EventHandler(this.lookUpEdit3_EditValueChanged);
             // 
             // templateVMBindingSource

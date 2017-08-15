@@ -109,7 +109,7 @@ namespace LabelPrint.Forms
             }
             if (lookUpEdit3.EditValue == null)
             {
-                MessageBox.Show("Шаблон не выбран! Если их нет, то создайте тх в конструкторе.");
+                MessageBox.Show("Шаблон не выбран! Если их нет, то создайте его в конструкторе.");
                 return;
             }
             else if (consignments.Count < 1)

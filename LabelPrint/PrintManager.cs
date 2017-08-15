@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zen.Barcode;
+//using Zen.Barcode;
 
 namespace LabelPrint
 {
@@ -22,7 +23,7 @@ namespace LabelPrint
         private String currentTemplate;
 
         private const string folderName = "Templates";
-
+        string TemplateText;
         public string CurrentTemplate
         {
             get
@@ -53,11 +54,12 @@ namespace LabelPrint
         {
             string path = folderName + "\\" + (nameFile);
             richEditControl1.LoadDocument(path);
+            TemplateText = this.richEditControl1.WordMLText;
         }
 
         public string DataTemplate(ConsignmentRequestVM data)
         {
-            string result = this.richEditControl1.WordMLText;
+            string result = TemplateText;
 
             if (data != null)
             {
@@ -70,7 +72,7 @@ namespace LabelPrint
 
                 string image1 = GetDefaultStringImage(result, 1);
                 string image2 = GetDefaultStringImage(result, 0);
-
+            
                 if (result.Contains(image1))
                 {
                     //result = result.Replace(image1, GenerateBacode(data.Model, sizeIm1));
@@ -116,19 +118,6 @@ namespace LabelPrint
                 }
             }
             return defaultImage;
-        }
-       
-        private string GenerateBacode(string _data, string size)
-        {
-            Linear barcode = new Linear();
-            barcode.Type = BarcodeType.CODE128;
-            barcode.Data = _data;
-            barcode.TextFont = new Font("Arial", 12);
-            //barcode.BarcodeWidth = 100f;
-            //barcode.BarcodeHeight = 100f;
-            byte[] array = barcode.drawBarcodeAsBytes();
-
-            return Convert.ToBase64String(array);
         }
 
         private string getBarcode(string text)
