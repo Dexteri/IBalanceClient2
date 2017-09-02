@@ -39,7 +39,6 @@ namespace LabelPrint
             richEditControl1.Document.Text = string.Empty;
             richEditControl1.Document.AppendText("ProdDate \n\r");
             richEditControl1.Document.AppendText("ModelKey \n\r");
-            richEditControl1.Document.AppendImage(DrawTextTmp("Model"));
             richEditControl1.Document.AppendParagraph();
             richEditControl1.Document.AppendText("SerialKey \n\r");
             richEditControl1.Document.AppendImage(DrawTextTmp("SerialKey"));

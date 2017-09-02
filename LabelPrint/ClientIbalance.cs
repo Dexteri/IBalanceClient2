@@ -11,6 +11,7 @@ namespace LabelPrint
     {
         private static string url = String.Empty;
         static HttpClient client;
+        private static string key = String.Empty;
 
         public static string Url
         {
@@ -32,43 +33,54 @@ namespace LabelPrint
                 url = value;
             }
         }
+        public static string Key
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(key))
+                {
+                    try
+                    {
+                        key = DefaultSettings.Get(XmlNodeName.KEY);
+                    }
+                    catch { }
+                }
+                return key;
+            }
+
+            set
+            {
+                key = value;
+            }
+        }
 
         internal static List<Consignment> GetConsignments()
         {
             return GetObjects<Consignment>("api/order/get-codes");
         }
-
-        static public List<ProductGenerationRequestVM> GetProducts()
+        static public List<ProductGenerationRequestVM> GetProducts(object type)
         {
-            Generate1();
-            return GetObjects<ProductGenerationRequestVM>("api/order/get-products");
+            return GetObjects<ProductGenerationRequestVM>("api/order/get-products", type);
         }
         static public List<CounterpartyGenerationRequestVM> GetCounterparty()
         {
             return GetObjects<CounterpartyGenerationRequestVM>("api/order/get-contractors");
         }
-        static public List<ConsignmentRequestVM> Generate(GenerateRequestVM generateVM)
+        static public List<ConsignmentRequestVM> Generate(GenerateRequestVM data)
         {
-            generateVM = new GenerateRequestVM() { CodesNumber = 87, ConsignmentNumber = "21w", CounterpartyId = 658, ProductId = 0 };
-
-            var response = client.PostAsJsonAsync(Url + "api/client/generate-code", generateVM).Result;
-            if (!response.IsSuccessStatusCode)
-                throw new Exception(response.ReasonPhrase);
-            return response.Content.ReadAsAsync<List<ConsignmentRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result;
-        }
-        static public List<ConsignmentRequestVM> Generate1()
-        {
-            Data data = new Data() { productId = "123", userId = "111", quantity = "2222" };
-
+            List<ConsignmentRequestVM> result = new List<ConsignmentRequestVM>();
             using (client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("key", "Basic hxG7VJVlJZD4F4YZMhGsPNb0J6uxpOVut1LH3VL4Fy5JTIBGUOjxu3o3QB1dk08Q:yzF3WjxDV8UtgZyQSeNLMzbcNgbEF6QmMw99eIwCdC1s3nHhLwOPl2z5HcZaC9IK");
+                client.DefaultRequestHeaders.Add("key", Key);
                 var response = client.PostAsJsonAsync(Url + "api/order/create-order", data);
-                if (!response.IsCompleted)
-                    throw new Exception(response.Status.ToString());
-                var temp = response.Result.Content.ReadAsAsync<object>(new[] { new JsonMediaTypeFormatter() }).Result;
+                var temp = response.Result.Content.ReadAsAsync<JsonObjectHelper<ConsignmentRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result;
+                if (temp != null && temp.data != null)
+                {
+                    result.AddRange(temp.data as ConsignmentRequestVM[]);
+                    return result;
+                }
             }
-            return null;
+            return result;
         }
         static public bool DeleteConsignments(List<int> idList)
         {
@@ -85,38 +97,62 @@ namespace LabelPrint
         /// <returns></returns>
         static public List<T> GetObjects<T>(string api)
         {
+            List<T> result = new List<T>();
             using (client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("key", "Basic hxG7VJVlJZD4F4YZMhGsPNb0J6uxpOVut1LH3VL4Fy5JTIBGUOjxu3o3QB1dk08Q:yzF3WjxDV8UtgZyQSeNLMzbcNgbEF6QmMw99eIwCdC1s3nHhLwOPl2z5HcZaC9IK");
+                client.DefaultRequestHeaders.Add("key", Key);
                 var response = client.GetAsync(Url + api, 0).Result;
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception(response.ReasonPhrase);
+                dynamic temp = response.Content.ReadAsAsync<JsonObjectHelper<T>>(new[] { new JsonMediaTypeFormatter() }).Result;
+                if (temp != null && temp.data != null)
+                {
+                    result.AddRange(temp.data as T[]);
+                    return result;
+                }
+            }
+            return result;
+        }
+        static public List<T> GetObjects<T>(string api, object data)
+        {
+            List<T> result = new List<T>();
+            using (client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("key", Key);
+                var response = client.PostAsJsonAsync(Url + api, data).Result;
                 if (!response.IsSuccessStatusCode)
                     throw new Exception(response.ReasonPhrase);
                 var temp = response.Content.ReadAsAsync<JsonObjectHelper<T>>(new[] { new JsonMediaTypeFormatter() }).Result;
                 if (temp != null && temp.data != null)
                 {
-                    List<T> result = new List<T>();
                     result.AddRange(temp.data as T[]);
                     return result;
                 }
             }
-            return null;
+            return result;
         }
         public static bool Check()
         {
             try
             {
-                var response = client.GetAsync(Url + "api/order/get-products", 0).Result;
-                if (!response.IsSuccessStatusCode)
-                    return false;
-                response = client.GetAsync(Url + "api/order/get-contractors", 0).Result;
-                if (!response.IsSuccessStatusCode)
-                    return false;
+                using (client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("key", Key);
+                    var response = client.GetAsync(Url + "api/order/get-codes", 0).Result;
+                    if (!response.IsSuccessStatusCode)
+                        throw new Exception(response.ReasonPhrase);
+                    var temp = response.Content.ReadAsAsync<JsonObjectHelper<ProductGenerationRequestVM>>(new[] { new JsonMediaTypeFormatter() }).Result;
+                    if (temp != null && temp.isSuccessfull)
+                    {
+                        return true;
+                    }
+                }
             }
             catch
             {
                 return false;
             }
-            return true;
+            return false;
         }
     }
    public class Data

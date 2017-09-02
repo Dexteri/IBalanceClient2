@@ -11,5 +11,6 @@ namespace LabelPrint.Setup
         public static string LAST_SELECTED_TEMPLATE = "LastSectedTemplate";
         public static string LAST_SELECTED_SKIN = "LastSelectedSkin";
         public static string URL = "url";
+        public static string KEY = "key";
     }
 }

@@ -47,7 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>imgpsh_fullsize.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -159,6 +160,7 @@
     <Compile Include="Forms\mainForm1.Designer.cs">
       <DependentUpon>mainForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryName.cs" />
     <Compile Include="Models\Consignment.cs" />
     <Compile Include="Models\ConsignmentRequestVM.cs" />
     <Compile Include="Models\CounterpartyGenerationRequestVM.cs" />
@@ -203,12 +205,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\LabelPrint.Models.Consignment.datasource" />
     <None Include="Properties\DataSources\LabelPrint.Models.ConsignmentRequestVM.datasource" />
     <None Include="Properties\DataSources\LabelPrint.Models.CounterpartyGenerationRequestVM.datasource" />
     <None Include="Properties\DataSources\LabelPrint.Models.GenerateRequestVM.datasource" />
     <None Include="Properties\DataSources\LabelPrint.Models.ProductGenerationRequestVM.datasource" />
-    <None Include="Properties\DataSources\LabelPrint.Models.TemplateVM.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

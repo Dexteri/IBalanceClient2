@@ -18,7 +18,8 @@ namespace LabelPrint.Forms
         public ConnectParametrs()
         {
             InitializeComponent();
-            textBox1.Text = DefaultSettings.Get(XmlNodeName.URL); 
+            textBox1.Text = DefaultSettings.Get(XmlNodeName.URL);
+            textBox2.Text = DefaultSettings.Get(XmlNodeName.KEY);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -26,6 +27,7 @@ namespace LabelPrint.Forms
             try
             {
                 DefaultSettings.Set(XmlNodeName.URL, textBox1.Text);
+                DefaultSettings.Set(XmlNodeName.KEY, textBox2.Text);
             }
             catch { }
         }
@@ -33,6 +35,7 @@ namespace LabelPrint.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             ClientIbalance.Url = textBox1.Text;
+            ClientIbalance.Key = textBox2.Text;
             MessageBox.Show(ClientIbalance.Check() ? " Подключено." : "Ошибка.");
             ClientIbalance.Url = string.Empty;
         }

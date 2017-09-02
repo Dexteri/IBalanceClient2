@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using LabelPrint.Models;
 using System.Drawing.Printing;
 using LabelPrint.Setup;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace LabelPrint
 {
@@ -24,7 +26,6 @@ namespace LabelPrint
             InitializeComponent();
             _printManager = new PrintManager();
             FillPrintersAndTemplates();
-            ConnectToServer();
             FillLookUp();
         }
         #endregion
@@ -37,7 +38,6 @@ namespace LabelPrint
             {
                 try
                 {
-                    products = ClientIbalance.GetProducts();
                     counterparty = ClientIbalance.GetCounterparty();
                     conn = false;
                 }
@@ -64,12 +64,13 @@ namespace LabelPrint
 
             this.lookUpEdit3.EditValue = _printManager.templates
                 .FirstOrDefault(x => x.Name.Equals(DefaultSettings.Get(XmlNodeName.LAST_SELECTED_TEMPLATE)))?.Name;
+
         }
 
         private void FillLookUp()
         {
-            foreach (var item in products)
-                productGenerationRequestVMBindingSource.Add(item);
+            lookUpEdit5.Properties.DataSource = new List<string>() { CategoryName.Product, CategoryName.Offer };
+            ConnectToServer();
             foreach (var item in counterparty)
                 counterpartyGenerationRequestVMBindingSource.Add(item);
             foreach (var item in _printManager.templates)
@@ -86,30 +87,25 @@ namespace LabelPrint
                 MessageBox.Show("Продукт не выбран!");
                 return;
             }
-            vm.ProductId = int.Parse(lookUpEdit1.EditValue.ToString());
+            vm.ProductId = lookUpEdit1.EditValue.ToString();
             if (lookUpEdit2.EditValue == null)
             {
                 MessageBox.Show("Агент не выбран!");
                 return;
             }
-            vm.CounterpartyId = int.Parse(lookUpEdit2.EditValue.ToString());
+            vm.UserId = lookUpEdit2.EditValue.ToString();
             if (int.Parse(numericUpDown1.Value.ToString()) < 1)
             {
-                MessageBox.Show("Количество должно быть больше 1!");
+                MessageBox.Show("Количество должно быть больше 0!");
                 return;
             }
-            vm.CodesNumber = int.Parse(numericUpDown1.Value.ToString());
-            if (string.IsNullOrEmpty(textBox1.Text))
-            {
-                MessageBox.Show("Партия не выбрана!");
-                return;
-            }
-            vm.ConsignmentNumber = textBox1.Text;
+            vm.Quantity = numericUpDown1.Value.ToString();
             List<ConsignmentRequestVM> codes = null;
             GetFromApi:
             try
             {
                 codes = ClientIbalance.Generate(vm);
+                //codes = new List<ConsignmentRequestVM>() { new ConsignmentRequestVM() { Category = "1", Code = "ASS123", Date = "2017/08/16 12:00", Product = "Certificat"} };
             }
             catch (Exception ex)
             {
@@ -121,6 +117,7 @@ namespace LabelPrint
             consignmentRequestVMBindingSource.Clear();
             foreach (var item in codes)
                 consignmentRequestVMBindingSource.Add(item);
+                
         }
 
         private void printButton2_Click(object sender, EventArgs e)
@@ -190,5 +187,29 @@ namespace LabelPrint
             }
         }
         #endregion
+
+        private void lookUpEdit5_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Data content = new Data() { type = lookUpEdit5.ItemIndex.ToString() };
+                products = ClientIbalance.GetProducts(content);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message + "\r\nДля проверки соедениния перейдите в настроки.", "Что-то пошло не так!", MessageBoxButtons.OK);
+            }
+            finally
+            {
+                productGenerationRequestVMBindingSource.Clear();
+                foreach (var item in products)
+                    productGenerationRequestVMBindingSource.Add(item);
+            }
+        }
+        class Data
+        {
+            [JsonProperty("type")]
+            public string type;
+        }
     }
 }

@@ -34,25 +34,24 @@ namespace LabelPrint.Forms
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.deleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.consignmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSerialKey = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colConsignmentDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCounterpartyName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colConsignmentNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
             this.templateVMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit4 = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Шаблон = new DevExpress.XtraLayout.LayoutControlItem();
             this.Принтер = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -64,7 +63,6 @@ namespace LabelPrint.Forms
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).BeginInit();
@@ -75,7 +73,6 @@ namespace LabelPrint.Forms
             // 
             this.dataLayoutControl1.Controls.Add(this.simpleButton3);
             this.dataLayoutControl1.Controls.Add(this.simpleButton1);
-            this.dataLayoutControl1.Controls.Add(this.deleteButton);
             this.dataLayoutControl1.Controls.Add(this.gridControl1);
             this.dataLayoutControl1.Controls.Add(this.lookUpEdit3);
             this.dataLayoutControl1.Controls.Add(this.lookUpEdit4);
@@ -111,16 +108,6 @@ namespace LabelPrint.Forms
             this.simpleButton1.Text = "Печатать";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
-            // deleteButton
-            // 
-            this.deleteButton.Location = new System.Drawing.Point(12, 419);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(53, 22);
-            this.deleteButton.StyleController = this.dataLayoutControl1;
-            this.deleteButton.TabIndex = 5;
-            this.deleteButton.Text = "Удалить";
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
             // gridControl1
             // 
             this.gridControl1.DataSource = this.consignmentBindingSource;
@@ -142,7 +129,8 @@ namespace LabelPrint.Forms
             this.colSerialKey,
             this.colConsignmentDate,
             this.colCounterpartyName,
-            this.colConsignmentNumber});
+            this.colCategory,
+            this.gridName});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -172,13 +160,13 @@ namespace LabelPrint.Forms
             this.colCounterpartyName.Visible = true;
             this.colCounterpartyName.VisibleIndex = 3;
             // 
-            // colConsignmentNumber
+            // colCategory
             // 
-            this.colConsignmentNumber.Caption = "Номер партии";
-            this.colConsignmentNumber.FieldName = "ConsignmentNumber";
-            this.colConsignmentNumber.Name = "colConsignmentNumber";
-            this.colConsignmentNumber.Visible = true;
-            this.colConsignmentNumber.VisibleIndex = 4;
+            this.colCategory.Caption = "Категория";
+            this.colCategory.FieldName = "Category";
+            this.colCategory.Name = "colCategory";
+            this.colCategory.Visible = true;
+            this.colCategory.VisibleIndex = 5;
             // 
             // lookUpEdit3
             // 
@@ -222,7 +210,6 @@ namespace LabelPrint.Forms
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem3,
-            this.layoutControlItem2,
             this.emptySpaceItem1,
             this.layoutControlItem4,
             this.Шаблон,
@@ -250,21 +237,12 @@ namespace LabelPrint.Forms
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.deleteButton;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 407);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(57, 26);
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(57, 407);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 407);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(242, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(299, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
@@ -294,6 +272,14 @@ namespace LabelPrint.Forms
             this.Принтер.Size = new System.Drawing.Size(175, 26);
             this.Принтер.TextSize = new System.Drawing.Size(43, 13);
             // 
+            // gridName
+            // 
+            this.gridName.Caption = "Название";
+            this.gridName.FieldName = "Model";
+            this.gridName.Name = "gridName";
+            this.gridName.Visible = true;
+            this.gridName.VisibleIndex = 4;
+            // 
             // ArchiveForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,7 +299,6 @@ namespace LabelPrint.Forms
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Шаблон)).EndInit();
@@ -330,15 +315,13 @@ namespace LabelPrint.Forms
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private SimpleButton simpleButton1;
-        private SimpleButton deleteButton;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private System.Windows.Forms.BindingSource consignmentBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colSerialKey;
         private DevExpress.XtraGrid.Columns.GridColumn colConsignmentDate;
         private DevExpress.XtraGrid.Columns.GridColumn colCounterparty;
-        private DevExpress.XtraGrid.Columns.GridColumn colConsignmentNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colCategory;
         private DevExpress.XtraGrid.Columns.GridColumn colCounterpartyName;
         private SimpleButton simpleButton3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
@@ -347,5 +330,6 @@ namespace LabelPrint.Forms
         private LookUpEdit lookUpEdit4;
         private DevExpress.XtraLayout.LayoutControlItem Принтер;
         private System.Windows.Forms.BindingSource templateVMBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn gridName;
     }
 }

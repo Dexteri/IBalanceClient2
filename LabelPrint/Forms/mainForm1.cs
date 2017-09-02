@@ -63,18 +63,6 @@ namespace LabelPrint
             gf = null;
         }
 
-        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (pt == null)
-            {
-                pt = new PrintTemplate();
-                pt.MdiParent = this;
-                pt.Disposed += Pt_Disposed;
-                pt.Show();
-            }
-            pt.Focus();
-        }
-
         private void Pt_Disposed(object sender, EventArgs e)
         {
             pt = null;
@@ -120,6 +108,18 @@ namespace LabelPrint
         private void Af_Disposed(object sender, EventArgs e)
         {
             af = null;
+        }
+
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (pt == null)
+            {
+                pt = new PrintTemplate();
+                pt.MdiParent = this;
+                pt.Disposed += Pt_Disposed;
+                pt.Show();
+            }
+            pt.Focus();
         }
     }
 }

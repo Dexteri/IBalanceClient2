@@ -23,7 +23,10 @@ namespace LabelPrint.Forms
         {
             ConnectToServer();
             foreach (var item in consignments)
+            {
+                item.Category = item.Category == 0.ToString() ? CategoryName.Product: CategoryName.Offer;
                 consignmentBindingSource.Add(item);
+            }
             _printManager = new PrintManager();
             FillPrintersAndTemplates();
             foreach (var item in _printManager.templates)
@@ -71,9 +74,9 @@ namespace LabelPrint.Forms
             foreach (int i in list)
             {
                 ConsignmentRequestVM vm = new ConsignmentRequestVM();
-                vm.Model = ((Consignment)consignmentBindingSource.List[i]).Model;
-                vm.ProductionDate = ((Consignment)consignmentBindingSource.List[i]).ConsignmentDate.ToShortDateString();
-                vm.SerialKey = ((Consignment)consignmentBindingSource.List[i]).SerialKey;
+                vm.Product = ((Consignment)consignmentBindingSource.List[i]).Model;
+                vm.Date = ((Consignment)consignmentBindingSource.List[i]).ConsignmentDate.ToShortDateString();
+                vm.Code = ((Consignment)consignmentBindingSource.List[i]).SerialKey;
                 consignments.Add(vm);
             }
             if (lookUpEdit3.EditValue == null)
@@ -102,9 +105,9 @@ namespace LabelPrint.Forms
             foreach (int i in list)
             {
                 ConsignmentRequestVM vm = new ConsignmentRequestVM();
-                vm.Model = ((Consignment)consignmentBindingSource.List[i]).Model;
-                vm.ProductionDate = ((Consignment)consignmentBindingSource.List[i]).ConsignmentDate.ToShortDateString();
-                vm.SerialKey = ((Consignment)consignmentBindingSource.List[i]).SerialKey;
+                vm.Product = ((Consignment)consignmentBindingSource.List[i]).Model;
+                vm.Date = ((Consignment)consignmentBindingSource.List[i]).ConsignmentDate.ToShortDateString();
+                vm.Code = ((Consignment)consignmentBindingSource.List[i]).SerialKey;
                 consignments.Add(vm);
             }
             if (lookUpEdit3.EditValue == null)
@@ -140,6 +143,7 @@ namespace LabelPrint.Forms
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            /*
             if (MessageBox.Show("Вы действительно хотите выбранные объекты", "Внимания", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 List<int> idList = new List<int>();
@@ -155,7 +159,7 @@ namespace LabelPrint.Forms
                         consignmentBindingSource.Add(item);
                     gridView1.RefreshData();
                 }
-            }
+            }*/
             
         }
     }

@@ -9,8 +9,9 @@ namespace LabelPrint.Models
 {
     public class Consignment
     {
-        [JsonIgnore]
-        public int Id { get; set; }
+        //[JsonProperty("id")]
+        //[JsonIgnore]
+        //public int Id { get; set; }
         [JsonProperty("created_at")]
         public string DateString { get; set; }
         [JsonIgnore]
@@ -24,11 +25,11 @@ namespace LabelPrint.Models
                       DateTime.MinValue;
             }
         }
-        [JsonProperty("code")]
-        public string ConsignmentNumber { get; set; }
+        [JsonProperty("product_type")]
+        public string Category { get; set; }
         [JsonProperty("user_name")]
         public string CounterpartyName { get; set; }
-        [JsonProperty("product_type")]
+        [JsonProperty("code")]
         public string SerialKey { get; set; }
         [JsonProperty("product_name")]
         public string Model { get; set; }

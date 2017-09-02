@@ -64,25 +64,17 @@ namespace LabelPrint
             if (data != null)
             {
                 if (result.Contains("ModelKey"))
-                    result = result.Replace("ModelKey", data.Model);
+                    result = result.Replace("ModelKey", data.Product);
                 if (result.Contains("ProdDate"))
-                    result = result.Replace("ProdDate", data.ProductionDate);
+                    result = result.Replace("ProdDate", data.Date);
                 if (result.Contains("SerialKey"))
-                    result = result.Replace("SerialKey", data.SerialKey);
+                    result = result.Replace("SerialKey", data.Code);
+                
+                string image = GetDefaultStringImage(result, 0);
 
-                string image1 = GetDefaultStringImage(result, 1);
-                string image2 = GetDefaultStringImage(result, 0);
-            
-                if (result.Contains(image1))
+                if (result.Contains(image))
                 {
-                    //result = result.Replace(image1, GenerateBacode(data.Model, sizeIm1));
-                    result = result.Replace(image1, getBarcode(data.Model));
-                }
-
-                if (result.Contains(image2))
-                {
-                   // result = result.Replace(image2, GenerateBacode(data.SerialKey, sizeIm2));
-                    result = result.Replace(image2, getBarcode(data.SerialKey));
+                    result = result.Replace(image, getBarcode(data.Code));
                 }
             }
             return result;
