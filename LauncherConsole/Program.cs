@@ -23,13 +23,17 @@ namespace LauncherConsole
             ftpClient.Password = "OJgIr8va";
             ftpClient.UseSSL = false;
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
-            Console.ForegroundColor = ConsoleColor.Red;
         }
         static void Main(string[] args)
         {
             Init();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("--------------Starting downloading-----------");
+            Console.ForegroundColor = ConsoleColor.Red;
             DownLoad(locationApp, pathToSource);
-            Console.WriteLine("Complete.....");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("------------------Completed------------------");
+            Console.WriteLine("The files were be successfully downloaded....");
             Console.ReadKey();
         }
         private static void DownLoad(string localPath, string ftpPath)
@@ -43,6 +47,7 @@ namespace LauncherConsole
                 {
                     if (!Directory.Exists(newPath))
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Created directory: {0}....", file.Name);
                         Directory.CreateDirectory(newPath);
                     }
@@ -65,7 +70,8 @@ namespace LauncherConsole
         }
         public static DateTime GetCreateDate(string nameFile)
         {
-            return File.GetLastWriteTime(locationApp + nameFile);
+            DateTime res = File.GetLastWriteTime(locationApp + nameFile);
+            return res;
         }
     }
 }
