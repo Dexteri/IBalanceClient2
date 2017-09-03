@@ -161,4 +161,8 @@ namespace LabelPrint
         public string productId { get; set; }
         public string quantity { get; set; }
     }
+    public class A
+    {
+
+    }
 }
