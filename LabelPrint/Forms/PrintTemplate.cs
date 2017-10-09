@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.API.Native;
 using DevExpress.XtraRichEdit.Commands;
 using DevExpress.XtraRichEdit.Services;
 using LabelPrint.Setup;
@@ -39,16 +40,16 @@ namespace LabelPrint
             richEditControl1.Document.Text = string.Empty;
             richEditControl1.Document.AppendText("ProdDate \n\r");
             richEditControl1.Document.AppendText("ModelKey \n\r");
-            richEditControl1.Document.AppendParagraph();
+            richEditControl1.Document.Images.Append(DrawTextTmp("ModelKey"));
+            richEditControl1.Document.Paragraphs.Append();
             richEditControl1.Document.AppendText("SerialKey \n\r");
-            richEditControl1.Document.AppendImage(DrawTextTmp("SerialKey"));
-
+            richEditControl1.Document.Images.Append(DrawTextTmp("SerialKey"));
             this.richEditControl1.Options.DocumentSaveOptions.DefaultFormat = DocumentFormat.OpenXml;
             this.richEditControl1.Options.DocumentSaveOptions.DefaultFileName = @"Templates\Template";
         }
         private Image DrawTextTmp(String text)
         {
-            Image img = new Bitmap(1, 1);
+            Image img = new Bitmap(1,1);
             Graphics drawing = Graphics.FromImage(img);
             Font font = new Font("Arial", 10);
             Color textColor = Color.Yellow;
@@ -60,16 +61,13 @@ namespace LabelPrint
             drawing = Graphics.FromImage(img);
             drawing.Clear(backColor);
             Brush textBrush = new SolidBrush(textColor);
-
+            
             drawing.DrawString(text, font, textBrush, 0, 0);
-
+            
             drawing.Save();
-
             textBrush.Dispose();
             drawing.Dispose();
-
             return img;
-
         }
     }
 }
